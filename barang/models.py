@@ -5,7 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 # Create your models here.
 class Produk(models.Model):
     namaproduk = models.CharField(max_length=50)
-    harga = models.DecimalField(max_digits=1000000, decimal_places=10)
+    harga = models.DecimalField(max_digits=1000000, decimal_places=2)
     stok = models.IntegerField()
     keterangan = models.TextField() 
     

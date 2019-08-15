@@ -7,17 +7,17 @@ class Keranjang(models.Model):
     jumlahKeranjang = models.IntegerField()
     alamatKirim = models.CharField(max_length=50)
     berat = models.IntegerField()
-    totalharga = models.DecimalField(max_digits=1000000, decimal_places=10)
+    totalharga = models.DecimalField(max_digits=1000000, decimal_places=2)
     
 class Kurir(models.Model):
     namakurir = models.CharField(max_length=50)
-    hargakilo = models.DecimalField(max_digits=1000000, decimal_places=10)
+    hargakilo = models.DecimalField(max_digits=1000000, decimal_places=2)
     
 class Order(models.Model):
     idorder = models.IntegerField()
     idbarang = models.IntegerField()
     jumlahOrder = models.IntegerField()
-    ongkir = models.DecimalField(max_digits=1000000, decimal_places=10)
+    ongkir = models.DecimalField(max_digits=1000000, decimal_places=2)
     
 class Pembayaran(models.Model):
     idorder = models.IntegerField()
