@@ -8,6 +8,10 @@ class Produk(models.Model):
     harga = models.DecimalField(max_digits=1000000, decimal_places=2)
     stok = models.IntegerField()
     keterangan = models.TextField() 
+    def __str__(self):
+        return self.namaproduk
+    class Meta:
+        verbose_name_plural = "Produk"
     
 class Warna(models.Model):
     nama_warna = models.CharField(max_length=100, null=True)

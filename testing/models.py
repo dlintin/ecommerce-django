@@ -4,7 +4,6 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 
 
-
 class Product(models.Model):
     name = models.CharField(max_length=100)
 
