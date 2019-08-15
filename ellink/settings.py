@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'barang',
     'pembeli',
     'order',
+    'testing',
 ]
 
 MIDDLEWARE = [
