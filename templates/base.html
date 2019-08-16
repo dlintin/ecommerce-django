@@ -1,0 +1,544 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Goodwin eCommerce HTML Template - Category Page</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="preload" as="font" href="{% static 'fonts/icomoon/fonts/icomoon543e.ttf?x9i9xv' %}" type="font/ttf" crossorigin="anonymous"><!-- Vendor CSS -->
+    <link href="{% static 'js/plugins.css' %}" rel="stylesheet"><!-- Custom styles for this template -->
+    <link href="{% static 'css/style-light.css' %}" rel="stylesheet">
+    <!--icon font-->
+    <link href="{% static 'fonts/icomoon/icomoon.css' %}" rel="stylesheet">
+    <!--custom font-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+</head>
+
+<body class="is-dropdn-click">
+    <div class="body-preloader">
+        <div class="loader-wrap">
+            <div class="dots">
+                <div class="dot one"></div>
+                <div class="dot two"></div>
+                <div class="dot three"></div>
+            </div>
+        </div>
+    </div>
+    <header class="hdr global_width hdr_sticky hdr-mobile-style2">
+       
+        <!-- /Promo TopLine -->
+        <!-- Mobile Menu -->
+        <div class="mobilemenu js-push-mbmenu">
+            <div class="mobilemenu-content">
+                <div class="mobilemenu-close mobilemenu-toggle">CLOSE</div>
+                <div class="mobilemenu-scroll">
+                    <div class="mobilemenu-search"></div>
+                    <div class="nav-wrapper show-menu">
+                        <div class="nav-toggle"><span class="nav-back"><i class="icon-arrow-left"></i></span> <span class="nav-title"></span></div>
+                        <ul class="nav nav-level-1">
+                            <li><a href="index-2.html">Layouts<span class="menu-label menu-label--color1">NEW</span></a><span class="arrow"></span>
+                                <ul class="nav-level-2">
+                                    <li><a href="index-2.html" title="">Fashion 1</a></li>
+                                    <li><a href="index-fashion-2.html" title="">Fashion 2</a></li>
+                                    <li><a href="index-electronics.html" title="">Electronics 1</a></li>
+                                    <li><a href="index-electronics-2.html" title="">Electronics 2</a></li>
+                                    <li><a href="index-furniture.html" title="">Furniture</a></li>
+                                    <li><a href="index-nutrition.html" title="">Nutrition</a></li>
+                                    <li><a href="index-sport.html" title="">Sport</a></li>
+                                    <li><a href="index-tools.html" title="">Tools</a></li>
+                                    <li><a href="index-watches.html" title="">Watches</a></li>
+                                    <li><a href="index-tshirts.html" title="">T-shirts</a></li>
+                                    <li><a href="index-toys.html" title="">Toys</a></li>
+                                    <li><a href="index-plumbing.html" title="">Plumbing</a></li>
+                                    <li><a href="index-rtl.html" title="">RTL</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#" title="">Pages</a><span class="arrow"></span>
+                                <ul class="nav-level-2">
+                                    <li><a href="index-2.html" title="">Product page</a><span class="arrow"></span>
+                                        <ul class="nav-level-3">
+                                            <li><a href="product.html" title="">Product page variant 1</a></li>
+                                            <li><a href="product-2.html" title="">Product page variant 2</a></li>
+                                            <li><a href="product-3.html" title="">Product page variant 3</a></li>
+                                            <li><a href="product-4.html" title="">Product page variant 4</a></li>
+                                            <li><a href="product-5.html" title="">Product page variant 5</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="category.html" title="">Category page</a><span class="arrow"></span>
+                                        <ul class="nav-level-3">
+                                            <li><a href="category.html" title="">Left sidebar filters</a></li>
+                                            <li><a href="category-right-column.html" title="">Right sidebar filters</a></li>
+                                            <li><a href="category-with-description.html" title="">With category description</a></li>
+                                            <li><a href="category-no-filters.html" title="">Without filters</a></li>
+                                            <li><a href="category-empty.html" title="">Empty category</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="cart.html" title="">Cart & Checkout</a><span class="arrow"></span>
+                                        <ul class="nav-level-3">
+                                            <li><a href="cart.html" title="">Cart variant 1</a></li>
+                                            <li><a href="cart-2.html" title="">Cart variant 2</a></li>
+                                            <li><a href="checkout.html" title="">Checkout variant 1</a></li>
+                                            <li><a href="checkout-2.html" title="">Checkout variant 2</a></li>
+                                            <li><a href="checkout-3.html" title="">Checkout variant 3</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="account-create.html" title="">Account</a><span class="arrow"></span>
+                                        <ul class="nav-level-3">
+                                            <li><a href="login.html" title="">Login</a></li>
+                                            <li><a href="account-create.html" title="">Create account</a></li>
+                                            <li><a href="account-details.html" title="">Account details</a></li>
+                                            <li><a href="account-addresses.html" title="">Account addresses</a></li>
+                                            <li><a href="account-history.html" title="">Order History</a></li>
+                                            <li><a href="account-wishlist.html" title="">Wishlist</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="blog.html" title="">Blog</a><span class="arrow"></span>
+                                        <ul class="nav-level-3">
+                                            <li><a href="blog.html" title="">Right sidebar</a></li>
+                                            <li><a href="blog-left-column.html" title="">Left sidebar</a></li>
+                                            <li><a href="blog-fixed-column.html" title="">Sticky sidebar</a></li>
+                                            <li><a href="blog-grid-2.html" title="">Grid 2 column</a></li>
+                                            <li><a href="blog-grid-3.html" title="">Grid 3 column</a></li>
+                                            <li><a href="blog-grid-4.html" title="">Grid 4 column</a></li>
+                                            <li><a href="blog-post.html" title="">Blog post</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="gallery.html" title="">Gallery</a><span class="arrow"></span>
+                                        <ul class="nav-level-3">
+                                            <li><a href="gallery.html" title="">Gallery variant 1</a></li>
+                                            <li><a href="gallery-2.html" title="">Gallery variant 2</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="faq.html" title="">Faq</a></li>
+                                    <li><a href="about.html" title="">About Us</a></li>
+                                    <li><a href="contact.html" title="">Contact Us</a></li>
+                                    <li><a href="page404.html" title="">404 Page</a></li>
+                                    <li><a href="typography.html" title="">Typography</a></li>
+                                    <li><a href="coming-soon.html" target="_blank" title="">Coming soon</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#" title="">Features</a><span class="arrow"></span>
+                                <ul class="nav-level-2">
+                                    <li><a href="index-2.html" title="">Headers</a><span class="arrow"></span>
+                                        <ul class="nav-level-3">
+                                            <li><a href="index-2.html" title="">Header 1</a></li>
+                                            <li><a href="index-fashion-2.html" title="">Header 2</a></li>
+                                            <li><a href="index-electronics.html" title="">Header 3</a></li>
+                                            <li><a href="index-sport.html" title="">Header 4</a></li>
+                                            <li><a href="typography.html" title="">Header 5</a></li>
+                                            <li><a href="index-tools.html" title="">Header 6</a></li>
+                                            <li><a href="index-watches.html" title="">Header 7</a></li>
+                                            <li><a href="index-toys.html" title="">Header 8</a></li>
+                                            <li><a href="index-furniture.html" title="">Header 9</a></li>
+                                            <li><a href="index-tshirts.html" title="">Header 10</a></li>
+                                            <li><a href="index-nutrition.html" title="">Header 11</a></li>
+                                            <li><a href="index-plumbing.html" title="">Header 12</a></li>
+                                            <li><a href="index-electronics-2.html" title="">Header 13</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="index-2.html" title="">Footers</a><span class="arrow"></span>
+                                        <ul class="nav-level-3">
+                                            <li><a href="index-2.html" title="">Footer 1</a></li>
+                                            <li><a href="index-sport.html" title="">Footer 2</a></li>
+                                            <li><a href="index-tools.html" title="">Footer 3</a></li>
+                                            <li><a href="index-furniture.html" title="">Footer 4</a></li>
+                                            <li><a href="index-plumbing.html" title="">Footer 5</a></li>
+                                            <li><a href="index-electronics.html" title="">Footer 6</a></li>
+                                            <li><a href="index-watches.html" title="">Footer 7</a></li>
+                                            <li><a href="index-fashion-2.html" title="">Footer 8</a></li>
+                                            <li><a href="index-nutrition.html" title="">Footer 9</a></li>
+                                            <li><a href="typography.html" title="">Footer 10</a></li>
+                                            <li><a href="index-tshirts.html" title="">Footer 11</a></li>
+                                            <li><a href="index-electronics-2.html" title="">Footer 12</a></li>
+                                            <li><a href="index-tshirts.html" title="">Footer 13</a></li>
+                                            <li><a href="index-toys.html" title="">Footer 14</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="http://frontend.big-skins.com/goodwin-html/banners-generator/" target="_blank" title="">Banners / Grid Editor</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="category.html">New Arrivals</a><span class="arrow"></span>
+                                <ul class="nav-level-2">
+                                    <li><a href="category.html" title="">Shoes</a><span class="arrow"></span>
+                                        <ul class="nav-level-3">
+                                            <li><a href="category.html">Heels</a></li>
+                                            <li><a href="category.html">Boots</a></li>
+                                            <li><a href="category.html">Flats</a></li>
+                                            <li><a href="category.html">Sneakers &amp; Athletic</a></li>
+                                            <li><a href="category.html">Clogs &amp; Mules</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="category.html" title="">Tops</a><span class="arrow"></span>
+                                        <ul class="nav-level-3">
+                                            <li><a href="category.html">Dresses</a></li>
+                                            <li><a href="category.html">Shirts &amp; Tops</a></li>
+                                            <li><a href="category.html">Coats &amp; Outerwear</a></li>
+                                            <li><a href="category.html">Sweaters</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="category.html" title="">Shoes</a><span class="arrow"></span>
+                                        <ul class="nav-level-3">
+                                            <li><a href="category.html">Heels</a></li>
+                                            <li><a href="category.html">Boots</a></li>
+                                            <li><a href="category.html">Flats</a></li>
+                                            <li><a href="category.html">Sneakers &amp; Athletic</a></li>
+                                            <li><a href="category.html">Clogs &amp; Mules</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="category.html" title="">Bottoms</a><span class="arrow"></span>
+                                        <ul class="nav-level-3">
+                                            <li><a href="category.html">Jeans</a></li>
+                                            <li><a href="category.html">Pants</a></li>
+                                            <li><a href="category.html">slippers</a></li>
+                                            <li><a href="category.html">suits</a></li>
+                                            <li><a href="category.html">socks</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="category.html" title="">Accessories</a><span class="arrow"></span>
+                                        <ul class="nav-level-3">
+                                            <li><a href="category.html">Sunglasses</a></li>
+                                            <li><a href="category.html">Hats</a></li>
+                                            <li><a href="category.html">Watches</a></li>
+                                            <li><a href="category.html">Jewelry</a></li>
+                                            <li><a href="category.html">Belts</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="category.html" title="">Bags</a><span class="arrow"></span>
+                                        <ul class="nav-level-3">
+                                            <li><a href="category.html">Handbags</a></li>
+                                            <li><a href="category.html">Backpacks</a></li>
+                                            <li><a href="category.html">Luggage</a></li>
+                                            <li><a href="category.html">wallets</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="{% url 'akun-home' %}" target="_blank">Akun<span class="menu-label menu-label--color3">Hurry Up!</span></a><span class="arrow"></span></li>
+                        </ul>
+                    </div>
+                    <div class="mobilemenu-bottom">
+                        <div class="mobilemenu-currency"></div>
+                        <div class="mobilemenu-language"></div>
+                        <div class="mobilemenu-settings"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Mobile Menu -->
+        <div class="hdr-mobile show-mobile">
+            <div class="hdr-content">
+                <div class="container">
+                    <!-- Menu Toggle -->
+                    <div class="menu-toggle"><a href="#" class="mobilemenu-toggle"><i class="icon icon-menu"></i></a></div>
+                    <!-- /Menu Toggle -->
+                    <div class="logo-holder"><a href="index-2.html" class="logo"><img src="images/logo.png" srcset="images/logo-retina.png 2x" alt=""></a></div>
+                    <div class="hdr-mobile-right">
+                        <div class="hdr-topline-right links-holder"></div>
+                        <div class="minicart-holder"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hdr-desktop hide-mobile">
+            <div class="hdr-topline">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-auto hdr-topline-left">
+                           
+                           
+                        </div>
+                        <div class="col hdr-topline-center">
+                            
+                        </div>
+                        <div class="col-auto hdr-topline-right links-holder">
+                           
+                            <!-- Header Account -->
+                            <div class="dropdn dropdn_account @@classes"><a href="#" class="dropdn-link"><i class="icon icon-person"></i><span>My Account</span></a>
+                                <div class="dropdn-content">
+                                    <div class="container">
+                                        <div class="dropdn-close">CLOSE</div>
+                                        <ul>
+                                            <li><a href="account-details.html"><i class="icon icon-person-fill"></i><span>My Account</span></a></li>
+                                            <li><a href="login.html"><i class="icon icon-lock"></i><span>Log In</span></a></li>
+                                            <li><a href="account-create.html"><i class="icon icon-person-fill-add"></i><span>Register</span></a></li>
+                                            <li><a href="checkout.html"><i class="icon icon-check-box"></i><span>Checkout</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Header Account -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hdr-content hide-mobile">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-auto logo-holder"><a href="index-2.html" class="logo"><img src="images/logo.png" srcset="images/logo-retina.png 2x" alt=""></a></div>
+                        <!--navigation-->
+                        <div class="prev-menu-scroll icon-angle-left prev-menu-js"></div>
+                        <div class="nav-holder">
+                            <div class="hdr-nav">
+                                <!--mmenu-->
+                                <ul class="mmenu mmenu-js">
+                                    <li><a href="{% url 'barang-home' %}" target="">DR. Kevin</a></li>
+                                    <li><a href="about.html" target="_blank">TENTANG KAMI</a></li>
+                                    <li><a href="" target="_blank">KONTAK</a></li>
+                                    <li><a href="{% url 'akun-home' %}" target="">Akun Saya</a></li>
+                                </ul>
+                                <!--/mmenu-->
+                            </div>
+                        </div>
+                        <div class="next-menu-scroll icon-angle-right next-menu-js"></div>
+                        <!--//navigation-->
+                        <div class="col-auto minicart-holder">
+                            <div class="minicart minicart-js"><a href="" class="minicart-link"><i class="icon icon-handbag"></i> <span class="minicart-qty">3</span> <span class="minicart-title">Keranjang Belanja</span> <span class="minicart-total">IDR 750.00</span></a>
+                                <div class="minicart-drop">
+                                    <div class="container">
+                                        <div class="minicart-drop-close">TUTUP</div>
+                                        <div class="minicart-drop-content">
+                                            <h3>Item ditambahkan:</h3>
+                                           
+                                            <div class="minicart-prd">
+                                                <div class="minicart-prd-image"><a href="#"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-05.jpg" class="lazyload" alt=""></a></div>
+                                                <div class="minicart-prd-name">
+                                                    <h5><a href="#">canverse</a></h5>
+                                                    <h2><a href="#">Checkered shirt</a></h2>
+                                                </div>
+                                                <div class="minicart-prd-qty"><span>jumalah:</span> <b>1</b></div>
+                                                <div class="minicart-prd-price"><span>harga:</span> <b>$ 75.00</b></div>
+                                                <div class="minicart-prd-action"><a href="#" class="icon-heart js-label-wishlist"></a> <a href="product.html" class="icon-pencil"></a> <a href="#" class="icon-cross js-product-remove"></a></div>
+                                            </div>
+                                         
+                                            <div class="minicart-drop-total">
+                                                <div class="float-right"><span class="minicart-drop-summa"><span>Subtotal:</span> <b>$ 294.00</b></span>
+                                                    <div class="minicart-drop-btns-wrap"><a href="{% url 'checkouts-home' %}" class="btn"><i class="icon-check-box"></i><span>checkout</span></a> <a href="cart.html" class="btn btn--alt"><i class="icon-handbag"></i><span>lihat keranjang</span></a></div>
+                                                </div>
+                                                <div class="float-left"><a href="cart.html" class="btn btn--alt"><i class="icon-handbag"></i><span>lihat keranjang</span></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sticky-holder compensate-for-scrollbar">
+            <div class="container">
+                <div class="row"><a href="#" class="mobilemenu-toggle show-mobile"><i class="icon icon-menu"></i></a>
+                    <div class="col-auto logo-holder-s"><a href="index-2.html" class="logo"><img src="images/logo.png" srcset="images/logo-retina.png 2x" alt=""></a></div>
+                    <!--navigation-->
+                    <div class="prev-menu-scroll icon-angle-left prev-menu-js"></div>
+                    <div class="nav-holder-s"></div>
+                    <div class="next-menu-scroll icon-angle-right next-menu-js"></div>
+                    <!--//navigation-->
+                    <div class="col-auto minicart-holder-s"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+{% block content %}
+<!--konten berada disini -->
+{% endblock %}
+
+     <footer class="page-footer footer-style-5 global_width @@classes">
+        <div class="footer-top container">
+            
+            <div class="footer-block py-1 py-md-0 mt-0 text-center">
+                <div class="footer-menu">
+                    <ul>
+                        <li><a href="account-details.html">Aun Saya</a></li>
+                        <li><a href="cart.html">Keranjang Belanja</a></li>
+                        <li><a href="account-history.html">Status Order</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-block mt-1 text-center">
+                <ul class="social-list">
+                    <li><a href="#" class="icon icon-facebook"></a></li>
+                    <li><a href="#" class="icon icon-twitter"></a></li>
+                    <li><a href="#" class="icon icon-google"></a></li>
+                    <li><a href="#" class="icon icon-instagram"></a></li>
+                    <li><a href="#" class="icon icon-youtube"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom container mt-2 pb-4">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center">
+                    <div class="footer-copyright">
+                        <p class="footer-copyright-text"><span>© Copyright</span> 2019 <a href="#">DR.Kevin</a>. <span>All rights reserved.</span></p>
+                        <p class="footer-copyright-links"><a href="#">Terms & conditions</a> <a href="#">Privacy policy</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer><a class="back-to-top js-back-to-top" href="#" title="Scroll To Top"><i class="icon icon-angle-up"></i></a>
+    <div class="modal--quickview" id="modalQuickView" style="display: none;">
+        <div class="modal-header">
+            <div class="modal-header-title">Quick View</div>
+        </div>
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="prd-block" id="prdGalleryModal">
+                    <div class="prd-block_info">
+                        <div class="prd-block_info-row info-row-1 mb-md-1">
+                            <div class="info-row-col-1">
+                                <h1 class="prd-block_title">Glamor shoes</h1>
+                            </div>
+                            <div class="info-row-col-2">
+                                <div class="product-sku">SKU: <span>#0005</span></div>
+                                <div class="prd-block__labels"><span class="prd-label--sale">SALE</span> <span class="prd-label--new">NEW</span></div>
+                                <div class="prd-block_link"><a href="#" class="icon-heart-1"></a></div>
+                            </div>
+                        </div>
+                        <div class="prd-block_info-row info-row-2">
+                            <form action="#">
+                                <div class="info-row-col-3">
+                                    <div class="prd-block_price"><span class="prd-block_price--actual">$180.00</span> <span class="prd-block_price--old">$210.00</span></div>
+                                </div>
+                                <div class="info-row-col-4">
+                                    <div class="prd-block_price"><span class="prd-block_price--actual">$180.00</span> <span class="prd-block_price--old">$210.00</span></div>
+                                    <div class="prd-block_qty"><span class="option-label">Qty:</span>
+                                        <div class="qty qty-changer qty-changer--lg">
+                                            <fieldset><input type="button" value="&#8210;" class="decrease"> <input type="text" class="qty-input" value="2" data-min="0" data-max="10"> <input type="button" value="+" class="increase"></fieldset>
+                                        </div>
+                                    </div>
+                                    <div class="prd-block_options">
+                                        <div class="form-group select-wrapper-sm"><select class="form-control" tabindex="0">
+                                                <option value="">36 / silver $34.00</option>
+                                                <option value="">38 / silver $34.00</option>
+                                                <option value="">36 / gold $45.00</option>
+                                                <option value="">38 / gold $45.00</option>
+                                            </select></div>
+                                    </div>
+                                    <div class="prd-block_actions">
+                                        <div class="btn-wrap"><button class="btn btn--add-to-cart-sm"><i class="icon icon-handbag"></i><span>Add to cart</span></button></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="prd-block_info js-prd-m-holder"></div><!-- Product Gallery -->
+                    <div class="product-previews-wrapper">
+                        <div class="product-quickview-carousel slick-arrows-aside-simple js-product-quickview-carousel">
+                            <div><a href="images/products/large/product-01.jpg" data-fancybox="gallery"><img src="images/products/product-01.jpg" alt=""></a></div>
+                            <div><a href="images/products/large/product-01-2.jpg" data-fancybox="gallery"><img src="images/products/product-01-2.jpg" alt=""></a></div>
+                            <div><a href="images/products/large/product-01-3.jpg" data-fancybox="gallery"><img src="images/products/product-01-3.jpg" alt=""></a></div>
+                            <div><a href="images/products/large/product-01-4.jpg" data-fancybox="gallery"><img src="images/products/product-01-4.jpg" alt=""></a></div>
+                            <div><a href="images/products/large/product-01-5.jpg" data-fancybox="gallery"><img src="images/products/product-01-5.jpg" alt=""></a></div>
+                        </div>
+                        <div class="gdw-loader"></div>
+                    </div>
+                    <!-- /Product Gallery -->
+                    <div class="mt-3 mt-md-4">
+                        <h2>Description</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error expedita hic iure nemo, nihil quam. Ab blanditiis eligendi fugit impedit, magni minus omnis placeat recusandae rem, sunt ut vitae voluptates? Fuga pariatur provident reiciendis veritatis voluptates voluptatum. A accusantium aliquam amet deleniti ea esse ex minus obcaecati perferendis tempore? Cupiditate distinctio incidunt molestiae, nam nesciunt non quaerat quas ratione repellendus! Ab aperiam assumenda consequatur delectus ea exercitationem facilis, in itaque iusto labore maiores nemo nostrum odio officiis optio placeat quas qui quibusdam ratione rem soluta suscipit totam voluptas voluptatem voluptatum.</p>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <td>FABRIC</td>
+                                        <td>Metallic faux leather</td>
+                                    </tr>
+                                    <tr>
+                                        <td>STYLE</td>
+                                        <td>Goatskin lining, Strappy silhouette, Chunky heel, Buckle at ankle</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MANUFACTURE</td>
+                                        <td>Made in Italy</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MATERIAL</td>
+                                        <td>Rubber heel patch at leather sole</td>
+                                    </tr>
+                                    <tr>
+                                        <td>WEIGHT</td>
+                                        <td>0.05, 0.06, 0.07ess cards</td>
+                                    </tr>
+                                    <tr>
+                                        <td>BOX</td>
+                                        <td>This item cannot be gift-boxed</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modalWishlistAdd" class="modal-info modal--success" style="display: none;">
+        <div class="modal-text"><i class="icon icon-heart-fill modal-icon-info"></i><span>Product added to wishlist</span></div>
+    </div>
+    <div id="modalWishlistRemove" class="modal-info modal--error" style="display: none;">
+        <div class="modal-text"><i class="icon icon-heart modal-icon-info"></i><span>Product removed from wishlist</span></div>
+    </div>
+    <div id="modalCheckOut" class="modal--checkout" style="display: none;">
+        <div class="modal-header">
+            <div class="modal-header-title"><i class="icon icon-check-box"></i><span>Product added to cart successfully!</span></div>
+        </div>
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modalchk-prd">
+                    <div class="row h-font">
+                        <div class="modalchk-prd-image col"><a href="product.html"><img src="images/products/product-01.jpg" alt="Glamor shoes"></a></div>
+                        <div class="modalchk-prd-info col">
+                            <h2 class="modalchk-title"><a href="product.html">Glamor shoes</a></h2>
+                            <div class="modalchk-price">$ 34.00</div>
+                            <div class="prd-options"><span class="label-options">Sizes:</span><span class="prd-options-val">xs</span></div>
+                            <div class="prd-options"><span class="label-options">Qty:</span><span class="prd-options-val">1</span></div>
+                            <div class="prd-options"><span class="label-options">Color:</span><span class="prd-options-val">silver</span></div>
+                            <div class="shop-features-modal d-none d-sm-block"><a href="#" class="shop-feature">
+                                    <div class="shop-feature-icon"><i class="icon-box3"></i></div>
+                                    <div class="shop-feature-text">
+                                        <div class="text1">Delivery</div>
+                                        <div class="text2">Lorem ipsum dolor sit amet conset</div>
+                                    </div>
+                                </a></div>
+                        </div>
+                        <div class="shop-features-modal d-sm-none"><a href="#" class="shop-feature">
+                                <div class="shop-feature-icon"><i class="icon-box3"></i></div>
+                                <div class="shop-feature-text">
+                                    <div class="text1">Delivery</div>
+                                    <div class="text2">Lorem ipsum dolor sit amet conset</div>
+                                </div>
+                            </a></div>
+                        <div class="modalchk-prd-actions col">
+                            <h3 class="modalchk-title">There is <span class="custom-color">3</span> items in your cart</h3>
+                            <div class="prd-options"><span class="label-options">Total:</span><span class="modalchk-total-price">$ 600.00</span></div>
+                            <div class="modalchk-custom"><img src="images/payment/guaranteed.png" alt="Guaranteed"></div>
+                            <div class="modalchk-btns-wrap"><a href="checkout.html" class="btn">proceed to checkout</a> <a href="#" class="btn btn--alt" data-fancybox-close>continue shopping</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body-preloader">
+        <div class="loader-wrap">
+            <div class="dots">
+                <div class="dot one"></div>
+                <div class="dot two"></div>
+                <div class="dot three"></div>
+            </div>
+        </div>
+    </div>
+
+   
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+
+</html>
