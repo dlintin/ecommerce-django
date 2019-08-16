@@ -13,6 +13,15 @@ urlpatterns = [
     path('checkouts/', views.checkouts, name='checkouts-home'), 
     
     path('history/', views.history, name='account-history'), 
+    
+    path('detail/', views.detail, name='barang-detail'), 
+    
+    path('login/', views.login, name='login'), 
+    
+    path('register/', views.register, name='register'), 
+    
+    path('keranjang/', views.keranjang, name='keranjang'), 
+    
     ]
 
 if settings.DEBUG:

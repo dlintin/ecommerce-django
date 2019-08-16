@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 
 {% load staticfiles %}
@@ -77,8 +76,20 @@
         <!-- //BN Slider 1 -->
         <div class="holder mt-0">
             <div class="container">
-                <!-- Two columns -->
+                <ul class="breadcrumbs">
+                    {% comment %} <li><a href="index-2.html">Home</a></li>
+                    <li><span>Category</span></li> {% endcomment %}
+                </ul>
+            </div>
+        </div>
 
+            <div class="container">
+                <!-- Two columns -->
+                <div class="page-title text-center d-none d-lg-block">
+                                    <div class="title">
+                                        <h1>PRODUK KAMI</h1>
+                                    </div>
+                                </div>
   
                 <div class="row">
 
@@ -114,13 +125,7 @@
                                         <li class="active"><a href="#" data-tooltip="Very long some color name" title="Very long some color name"><span class="value"><img src="images/colorswatch/color-red.png" alt=""></span><span class="colorname">Very long some color name (125)</span></a></li>
                                         <li><a href="#" data-tooltip="Pink" title="Pink"><span class="value"><img src="images/colorswatch/color-pink.png" alt=""></span><span class="colorname">Pink (125)</span></a></li>
                                         <li><a href="#" data-tooltip="Violet" title="Violet"><span class="value"><img src="images/colorswatch/color-violet.png" alt=""></span><span class="colorname">Violet (125)</span></a></li>
-                                        <li><a href="#" data-tooltip="Blue" title="Blue"><span class="value"><img src="images/colorswatch/color-blue.png" alt=""></span><span class="colorname">Blue (125)</span></a></li>
-                                        <li><a href="#" data-tooltip="Marine" title="Marine"><span class="value"><img src="images/colorswatch/color-marine.png" alt=""></span><span class="colorname">Marine (125)</span></a></li>
-                                        <li><a href="#" data-tooltip="Orange" title="Orange"><span class="value"><img src="images/colorswatch/color-orange.png" alt=""></span><span class="colorname">Orange (125)</span></a></li>
-                                        <li><a href="#" data-tooltip="Yellow" title="Yellow"><span class="value"><img src="images/colorswatch/color-yellow.png" alt=""></span><span class="colorname">Yellow (125)</span></a></li>
-                                        <li><a href="#" data-tooltip="Dark Yellow" title="Dark Yellow"><span class="value"><img src="images/colorswatch/color-darkyellow.png" alt=""></span><span class="colorname">Dark Yellow (125)</span></a></li>
-                                        <li><a href="#" data-tooltip="Very long some color name" title="Very long some color name"><span class="value"><img src="images/colorswatch/color-black.png" alt=""></span><span class="colorname">Very long some color name (125)</span></a></li>
-                                        <li><a href="#" data-tooltip="White" title="White"><span class="value"><img src="images/colorswatch/color-white.png" alt=""></span><span class="colorname">White (125)</span></a></li>
+                                      
                                     </ul>
                                 </div>
                             </div>
@@ -209,21 +214,24 @@
                                 </div>
                             </div>
                             <!-- /Filter Row -->
+
                             <!-- Products Grid -->
                             <div class="prd-grid product-listing data-to-show-3 data-to-show-md-3 data-to-show-sm-2 js-category-grid">
+
+                                
+
                                 <div class="prd prd-has-loader prd-new prd-popular">
                                     <div class="prd-inside">
-                                        <div class="prd-img-area"><a href="product.html" class="prd-img"><img src="images/products/product-placeholder.png" data-srcset="images/products/product-01.jpg" alt="Glamor shoes" class="js-prd-img lazyload"></a>
-                                            w<div class="label-new">NEW</div><a href="#" class="label-wishlist icon-heart js-label-wishlist"></a>
+                                        <div class="prd-img-area"><a href="{% url 'barang-detail' %}" class="prd-img"><img src="{% static 'images/products/product-01.jpg'%}" data-srcset="{% static 'images/products/product-01.jpg'%}" alt="Glamor shoes" class="js-prd-img lazyload"></a>
                                             <ul class="list-options color-swatch prd-hidemobile">
-                                                <li data-image="images/products/product-01.jpg"><a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-01.jpg" class="lazyload" alt="Color Name"></a></li>
-                                                <li data-image="images/products/product-01-2.jpg"><a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-01-2.jpg" class="lazyload" alt="Color Name"></a></li>
+                                                <li data-image="images/products/product-01.jpg"><a href="#" class="js-color-toggle"><img src="{% static 'images/products/product-01.jpg'%}" data-srcset="{% static 'images/products/product-01.jpg'%}" class="lazyload" alt="Color Name"></a></li>
+                                                <li data-image="images/products/product-01-2.jpg"><a href="#" class="js-color-toggle"><img src="{% static 'images/products/product-01.jpg'%}" data-srcset="{% static 'images/products/product-01.jpg'%}" class="lazyload" alt="Color Name"></a></li>
                                             </ul>
                                             <div class="gdw-loader"></div>
                                         </div>
                                         <div class="prd-info">
-                                            <div class="prd-tag prd-hidemobile"><a href="#">under armor</a></div>
-                                            <h2 class="prd-title"><a href="product.html">Glamor shoes</a></h2>
+                                          
+                                            <h2 class="prd-title"><a href="{% url 'barang-detail' %}">Glamor shoes</a></h2>
                                             <div class="prd-rating prd-hidemobile"><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star"></i></div>
                                             <div class="prd-price">
                                                 <div class="price-new">IDR 34.00</div>
@@ -233,7 +241,7 @@
                                                     <form action="#"><input type="hidden"> <button class="btn" data-fancybox data-src="#modalCheckOut"><i class="icon icon-handbag"></i><span>Masukkan Keranjang</span></button></form>
                                                     <div class="prd-links"><a href="#" class="icon-eye prd-qview-link js-qview-link" data-fancybox data-src="#modalQuickView"></a></div>
                                                 </div>
-                                                <div class="prd-options prd-hidemobile"><span class="label-options">Sizes:</span>
+                                                <div class="prd-options prd-hidemobile"><span class="label-options">Ukuran:</span>
                                                     <ul class="list-options size-swatch">
                                                         <li class="active"><span>xs</span></li>
                                                         <li><span>s</span></li>
@@ -246,122 +254,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="prd prd-has-loader prd-new">
-                                    <div class="prd-inside">
-                                        <div class="prd-img-area"><a href="product.html" class="prd-img"><img src="images/products/product-placeholder.png" data-srcset="images/products/product-02.jpg" alt="Long top with print" class="js-prd-img lazyload"></a>
-                                            <div class="label-new">NEW</div><a href="#" class="label-wishlist icon-heart js-label-wishlist"></a>
-                                            <ul class="list-options color-swatch prd-hidemobile">
-                                                <li data-image="images/products/product-02.jpg"><a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-02.jpg" class="lazyload" alt="Color Name"></a></li>
-                                                <li data-image="images/products/product-02-2.jpg"><a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-02-2.jpg" class="lazyload" alt="Color Name"></a></li>
-                                            </ul>
-                                            <div class="gdw-loader"></div>
-                                        </div>
-                                        <div class="prd-info">
-                                            <div class="prd-tag prd-hidemobile"><a href="#">canverse</a></div>
-                                            <h2 class="prd-title"><a href="product.html">Long top with print</a></h2>
-                                            <div class="prd-rating prd-hidemobile"><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star"></i></div>
-                                            <div class="prd-price">
-                                                <div class="price-new">IDR 20.00</div>
-                                            </div>
-                                            <div class="prd-hover">
-                                                <div class="prd-action">
-                                                    <form action="#"><input type="hidden"> <button class="btn" data-fancybox data-src="#modalCheckOut"><i class="icon icon-handbag"></i><span>Masukkan Keranjang</span></button></form>
-                                                    <div class="prd-links"><a href="#" class="icon-eye prd-qview-link js-qview-link" data-fancybox data-src="#modalQuickView"></a></div>
-                                                </div>
-                                                <div class="prd-options prd-hidemobile"><span class="label-options">Sizes:</span>
-                                                    <ul class="list-options size-swatch">
-                                                        <li class="active"><span>xs</span></li>
-                                                        <li><span>s</span></li>
-                                                        <li><span>m</span></li>
-                                                        <li><span>l</span></li>
-                                                        <li><span>xl</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="prd prd-has-loader prd-sale prd-popular prd-has-countdown">
-                                    <div class="prd-inside">
-                                        <div class="prd-img-area"><a href="product.html" class="prd-img"><img src="images/products/product-placeholder.png" data-srcset="images/products/product-03.jpg" alt="Tie with texture" class="js-prd-img lazyload"></a>
-                                            <div class="label-sale">-51%</div><a href="#" class="label-wishlist icon-heart js-label-wishlist"></a>
-                                            <ul class="list-options color-swatch prd-hidemobile">
-                                                <li data-image="images/products/product-03.jpg"><a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-03.jpg" class="lazyload" alt="Color Name"></a></li>
-                                                <li data-image="images/products/product-03-2.jpg"><a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-03-2.jpg" class="lazyload" alt="Color Name"></a></li>
-                                                <li data-image="images/products/product-03-3.jpg"><a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-03-3.jpg" class="lazyload" alt="Color Name"></a></li>
-                                            </ul>
-                                            <div class="countdown-box">
-                                                <div class="countdown js-countdown" data-countdown="2019/12/31"></div>
-                                            </div>
-                                            <div class="gdw-loader"></div>
-                                        </div>
-                                        <div class="prd-info">
-                                            <div class="prd-tag prd-hidemobile"><a href="#">colvin klein</a></div>
-                                            <h2 class="prd-title"><a href="product.html">Tie with texture</a></h2>
-                                            <div class="prd-rating prd-hidemobile"><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star"></i></div>
-                                            <div class="prd-price">
-                                                <div class="price-new">IDR 34.00</div>
-                                                {% comment %} <div class="price-old">$ 70.00</div> {% endcomment %}
-                                                {% comment %} <div class="price-comment">You save $ 36.00</div> {% endcomment %}
-                                            </div>
-                                            <div class="prd-hover">
-                                                <div class="prd-action">
-                                                    <form action="#"><input type="hidden"> <button class="btn" data-fancybox data-src="#modalCheckOut"><i class="icon icon-handbag"></i><span>Masukkan Keranjang</span></button></form>
-                                                    <div class="prd-links"><a href="#" class="icon-eye prd-qview-link js-qview-link" data-fancybox data-src="#modalQuickView"></a></div>
-                                                </div>
-                                                <div class="prd-options prd-hidemobile"><span class="label-options">Sizes:</span>
-                                                    <ul class="list-options size-swatch">
-                                                        <li class="active"><span>xs</span></li>
-                                                        <li><span>s</span></li>
-                                                        <li><span>m</span></li>
-                                                        <li><span>l</span></li>
-                                                        <li><span>xl</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                             
-                    
-                                <div class="prd prd-has-loader">
-                                    <div class="prd-inside">
-                                        <div class="prd-img-area"><a href="product.html" class="prd-img"><img src="{% static 'barang/images/products/product-placeholder.png' %}" data-srcset="images/products/product-15.jpg" alt="Dress with print" class="js-prd-img lazyload"></a>
-                                            <div class="label-sale">-78%</div>
-                                            <div class="label-new">NEW</div><a href="#" class="label-wishlist icon-heart js-label-wishlist"></a>
-                                            <ul class="list-options color-swatch prd-hidemobile">
-                                                <li data-image="{% static 'images/products/product-15.jpg' %}"><a href="#" class="js-color-toggle"><img src="{% static 'barang/images/products/product-placeholder.png' %}" data-srcset="images/products/xsmall/product-15.jpg" class="lazyload" alt="Color Name"></a></li>
-                                                <li data-image="images/products/product-15-2.jpg"><a href="#" class="js-color-toggle"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-15-2.jpg" class="lazyload" alt="Color Name"></a></li>
-                                            </ul>
-                                            <div class="gdw-loader"></div>
-                                        </div>
-                                        <div class="prd-info">
-                                            <div class="prd-tag prd-hidemobile"><a href="#">clorks</a></div>
-                                            <h2 class="prd-title"><a href="product.html">Dress with print</a></h2>
-                                            <div class="prd-rating prd-hidemobile"><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star"></i></div>
-                                            <div class="prd-price">
-                                                <div class="price-new">IDR 15.00</div>
-                                                {% comment %} <div class="price-old">$ 75.00</div> {% endcomment %}
-                                                {% comment %} <div class="price-comment">You save $ 60.00</div> {% endcomment %}
-                                            </div>
-                                            <div class="prd-hover">
-                                                <div class="prd-action">
-                                                    <form action="#"><input type="hidden"> <button class="btn" data-fancybox data-src="#modalCheckOut"><i class="icon icon-handbag"></i><span>Masukkan Keranjang</span></button></form>
-                                                    <div class="prd-links"><a href="#" class="icon-eye prd-qview-link js-qview-link" data-fancybox data-src="#modalQuickView"></a></div>
-                                                </div>
-                                                <div class="prd-options prd-hidemobile"><span class="label-options">Sizes:</span>
-                                                    <ul class="list-options size-swatch">
-                                                        <li class="active"><span>xs</span></li>
-                                                        <li><span>s</span></li>
-                                                        <li><span>m</span></li>
-                                                        <li><span>l</span></li>
-                                                        <li><span>xl</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
+
                             </div>
                             <div class="loader-wrap">
                                 <div class="dots">

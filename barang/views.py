@@ -15,3 +15,15 @@ def checkouts(request):
 
 def history(request):
     return render (request, 'account-history.html',{})
+
+def detail(request):
+    return render (request, 'produk-detail.html',{})
+
+def login(request):
+    return render (request, 'login.html',{})
+
+def register(request):
+    return render (request, 'register.html',{})
+
+def keranjang(request):
+    return render (request, 'keranjang.html',{})

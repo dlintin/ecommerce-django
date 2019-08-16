@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% block content %}
+    <div class="page-content">
+        <div class="holder mt-0">
+            <div class="container">
+                <ul class="breadcrumbs">
+                    <li><a href="index-2.html">Home</a></li>
+                    <li><span>Buat Akun</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="holder mt-0">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-sm-8 col-md-6">
+                        <h2 class="text-center">Buat Akun</h2>
+                        <div class="form-wrapper">
+                            <p>Untuk dapat membeli barang di online shop ini, silahkan buat akun.</p>
+                            <form action="#">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group"><input type="text" class="form-control" placeholder="Nama Depan"></div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group"><input type="text" class="form-control" placeholder="Nama Belakang"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group"><input type="text" class="form-control" placeholder="E-mail"></div>
+                                <div class="form-group"><input type="password" class="form-control" placeholder="Password"></div>
+                                <div class="form-group"><input type="password" class="form-control" placeholder="Ulangi Password"></div>
+                                {% comment %} <div class="clearfix"><input id="checkbox1" name="checkbox1" type="checkbox" checked="checked"> <label for="checkbox1">By registering your details you agree to our Terms and Conditions and privacy and cookie policy</label></div> {% endcomment %}
+                                <div class="text-center"><button class="btn">Buat Akun</button></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

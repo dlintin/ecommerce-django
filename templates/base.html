@@ -249,24 +249,33 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-auto hdr-topline-left">
-                           
-                           
-                        </div>
-                        <div class="col hdr-topline-center">
-                            
+                                </div>  
+                                     <div class="custom-text"><i class="icon icon-mobile"></i><b>(0411) - 24312</b>
+                                </div>
+                            <div class="col hdr-topline-center">    
                         </div>
                         <div class="col-auto hdr-topline-right links-holder">
-                           
-                            <!-- Header Account -->
-                            <div class="dropdn dropdn_account @@classes"><a href="#" class="dropdn-link"><i class="icon icon-person"></i><span>My Account</span></a>
+                            <!-- Header Search -->
+                            <div class="dropdn dropdn_search hide-mobile @@classes"><a href="#" class="dropdn-link"><i class="icon icon-search2"></i><span>Cari</span></a>
                                 <div class="dropdn-content">
                                     <div class="container">
-                                        <div class="dropdn-close">CLOSE</div>
+                                        <form action="#" class="search"><button type="submit" class="search-button"><i class="icon-search2"></i></button> <input type="text" class="search-input" placeholder="Sepatu pria">
+                                            {% comment %} <div class="search-popular js-search-autofill"><span class="search-popular-label">popular searches:</span><a href="#">Jeans</a> <a href="#">Sunglazsses</a> <a href="#">hand bags</a> <a href="#">Discount</a> <a href="#">St.Valentine’s gift</a> <a href="#">maxi dress</a> <a href="#">Underwear</a><a href="#">new in clothing</a> <a href="#">men tops</a></div> {% endcomment %}
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Header Search -->
+                            <!-- Header Account -->
+                            <div class="dropdn dropdn_account @@classes"><a href="#" class="dropdn-link"><i class="icon icon-person"></i><span>Akun Saya</span></a>
+                                <div class="dropdn-content">
+                                    <div class="container">
+                                        <div class="dropdn-close">Tutup</div>
                                         <ul>
-                                            <li><a href="account-details.html"><i class="icon icon-person-fill"></i><span>My Account</span></a></li>
-                                            <li><a href="login.html"><i class="icon icon-lock"></i><span>Log In</span></a></li>
-                                            <li><a href="account-create.html"><i class="icon icon-person-fill-add"></i><span>Register</span></a></li>
-                                            <li><a href="checkout.html"><i class="icon icon-check-box"></i><span>Checkout</span></a></li>
+                                            <li><a href="{% url 'akun-home' %}"><i class="icon icon-person-fill"></i><span>Akun Saya</span></a></li>
+                                            <li><a href="{% url 'login' %}"><i class="icon icon-lock"></i><span>Masuk</span></a></li>
+                                            <li><a href="{% url 'register' %}"><i class="icon icon-person-fill-add"></i><span>Daftar</span></a></li>
+                                            <li><a href="{% url 'checkouts-home' %}"><i class="icon icon-check-box"></i><span>Checkout</span></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -279,7 +288,7 @@
             <div class="hdr-content hide-mobile">
                 <div class="container">
                     <div class="row">
-                        <div class="col-auto logo-holder"><a href="index-2.html" class="logo"><img src="images/logo.png" srcset="images/logo-retina.png 2x" alt=""></a></div>
+                        <div class="col-auto logo-holder"><a href="index-2.html" class="logo"><img src="{% static 'images/logo.png' %}" srcset="images/logo-retina.png 2x" alt=""></a></div>
                         <!--navigation-->
                         <div class="prev-menu-scroll icon-angle-left prev-menu-js"></div>
                         <div class="nav-holder">
@@ -317,9 +326,10 @@
                                          
                                             <div class="minicart-drop-total">
                                                 <div class="float-right"><span class="minicart-drop-summa"><span>Subtotal:</span> <b>$ 294.00</b></span>
-                                                    <div class="minicart-drop-btns-wrap"><a href="{% url 'checkouts-home' %}" class="btn"><i class="icon-check-box"></i><span>checkout</span></a> <a href="cart.html" class="btn btn--alt"><i class="icon-handbag"></i><span>lihat keranjang</span></a></div>
+                                                    <div class="minicart-drop-btns-wrap"><a href="{% url 'checkouts-home' %}" class="btn"><i class="icon-check-box"></i><span>checkout</span></a> 
+                                                    <a href="cart.html" class="btn btn--alt"><i class="icon-handbag"></i><span>lihat keranjangx</span></a></div>
                                                 </div>
-                                                <div class="float-left"><a href="cart.html" class="btn btn--alt"><i class="icon-handbag"></i><span>lihat keranjang</span></a></div>
+                                                <div class="float-left"><a href="{% url 'keranjang' %}" class="btn btn--alt"><i class="icon-handbag"></i><span>lihat keranjang</span></a></div>
                                             </div>
                                         </div>
                                     </div>
@@ -350,6 +360,18 @@
 {% endblock %}
 
      <footer class="page-footer footer-style-5 global_width @@classes">
+
+     <div class="holder bgcolor bgcolor-2 py-5 mt-0">
+            <div class="container">
+                <div class="subscribe-form subscribe-form--style1">
+                    <form action="#">
+                        <div class="form-inline">
+                            <div class="subscribe-form-title">berlangganan untuk mendapatkan info produk terbaru:</div><input type="text" class="form-control" placeholder="Masukkan e-mail anda"> <button type="submit" class="btn-decor">berlangganan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="footer-top container">
             
             <div class="footer-block py-1 py-md-0 mt-0 text-center">
