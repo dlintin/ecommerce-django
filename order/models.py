@@ -12,6 +12,10 @@ class Keranjang(models.Model):
 class Kurir(models.Model):
     namakurir = models.CharField(max_length=50)
     hargakilo = models.DecimalField(max_digits=1000000, decimal_places=2)
+    def __str__(self):
+        return self.namakurir
+    class Meta:
+        verbose_name_plural = "Kurir"
     
 class Order(models.Model):
     idorder = models.IntegerField()

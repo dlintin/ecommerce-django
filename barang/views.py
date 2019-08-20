@@ -5,7 +5,10 @@ from django.views.generic import TemplateView
 # Create your views here.
 
 def home(request):
-    return render (request, 'home.html',{})
+    barang = {
+        'barang': Produk.objects.all()
+    }
+    return render (request, 'home.html',barang)
 
 def akun(request):
     return render (request, 'account-details.html',{})

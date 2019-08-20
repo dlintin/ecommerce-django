@@ -218,8 +218,9 @@
                             <!-- Products Grid -->
                             <div class="prd-grid product-listing data-to-show-3 data-to-show-md-3 data-to-show-sm-2 js-category-grid">
 
-                                
-
+                              <!-- luar--> 
+                        {% for barangs in barang %}
+                         <!-- dalam--> 
                                 <div class="prd prd-has-loader prd-new prd-popular">
                                     <div class="prd-inside">
                                         <div class="prd-img-area"><a href="{% url 'barang-detail' %}" class="prd-img"><img src="{% static 'images/products/product-01.jpg'%}" data-srcset="{% static 'images/products/product-01.jpg'%}" alt="Glamor shoes" class="js-prd-img lazyload"></a>
@@ -231,10 +232,10 @@
                                         </div>
                                         <div class="prd-info">
                                           
-                                            <h2 class="prd-title"><a href="{% url 'barang-detail' %}">Glamor shoes</a></h2>
+                                            <h2 class="prd-title"><a href="{% url 'barang-detail' %}">{{ barangs.namaproduk}}</a></h2>
                                             <div class="prd-rating prd-hidemobile"><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star"></i></div>
                                             <div class="prd-price">
-                                                <div class="price-new">IDR 34.00</div>
+                                                <div class="price-new">IDRx {{ barangs.harga}}</div>
                                             </div>
                                             <div class="prd-hover">
                                                 <div class="prd-action">
@@ -254,7 +255,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+                        {% endfor %}
 
                             </div>
                             <div class="loader-wrap">
