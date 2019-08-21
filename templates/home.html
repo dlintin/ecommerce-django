@@ -211,7 +211,7 @@
                                                 </select></div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> 
                             </div>
                             <!-- /Filter Row -->
 
@@ -223,34 +223,21 @@
                          <!-- dalam--> 
                                 <div class="prd prd-has-loader prd-new prd-popular">
                                     <div class="prd-inside">
-                                        <div class="prd-img-area"><a href="{% url 'barang-detail' %}" class="prd-img"><img src="{% static 'images/products/product-01.jpg'%}" data-srcset="{% static 'images/products/product-01.jpg'%}" alt="Glamor shoes" class="js-prd-img lazyload"></a>
-                                            <ul class="list-options color-swatch prd-hidemobile">
-                                                <li data-image="images/products/product-01.jpg"><a href="#" class="js-color-toggle"><img src="{% static 'images/products/product-01.jpg'%}" data-srcset="{% static 'images/products/product-01.jpg'%}" class="lazyload" alt="Color Name"></a></li>
-                                                <li data-image="images/products/product-01-2.jpg"><a href="#" class="js-color-toggle"><img src="{% static 'images/products/product-01.jpg'%}" data-srcset="{% static 'images/products/product-01.jpg'%}" class="lazyload" alt="Color Name"></a></li>
-                                            </ul>
-                                            <div class="gdw-loader"></div>
+                                        <div class="prd-img-area"><a href="{% url 'item-detail' barangs.id %}" class="prd-img"><img style="height:280px; width:100%; object-fit: cover;" src="{{ barangs.gambar_barang.url }}" data-srcset="{{ barangs.gambar_barang.url }}" alt="Glamor shoes" class="js-prd-img lazyload"></a>
+                                            
                                         </div>
                                         <div class="prd-info">
                                           
                                             <h2 class="prd-title"><a href="{% url 'barang-detail' %}">{{ barangs.namaproduk}}</a></h2>
                                             <div class="prd-rating prd-hidemobile"><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star"></i></div>
                                             <div class="prd-price">
-                                                <div class="price-new">IDRx {{ barangs.harga}}</div>
+                                                <div class="price-new">IDR {{ barangs.harga}}</div>
                                             </div>
                                             <div class="prd-hover">
                                                 <div class="prd-action">
                                                     <form action="#"><input type="hidden"> <button class="btn" data-fancybox data-src="#modalCheckOut"><i class="icon icon-handbag"></i><span>Masukkan Keranjang</span></button></form>
                                                     <div class="prd-links"><a href="#" class="icon-eye prd-qview-link js-qview-link" data-fancybox data-src="#modalQuickView"></a></div>
-                                                </div>
-                                                <div class="prd-options prd-hidemobile"><span class="label-options">Ukuran:</span>
-                                                    <ul class="list-options size-swatch">
-                                                        <li class="active"><span>xs</span></li>
-                                                        <li><span>s</span></li>
-                                                        <li><span>m</span></li>
-                                                        <li><span>l</span></li>
-                                                        <li><span>xl</span></li>
-                                                    </ul>
-                                                </div>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>

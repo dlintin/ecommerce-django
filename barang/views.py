@@ -1,14 +1,23 @@
 from django.shortcuts import render
-from .models import Produk
+from .models import Produk, Warna, KategoriBarang
 from django.views.generic import ListView, DetailView
 from django.views.generic import TemplateView
 # Create your views here.
 
 def home(request):
-    barang = {
-        'barang': Produk.objects.all()
-    }
-    return render (request, 'home.html',barang)
+    barang = Produk.objects.all()
+    warna = Warna.objects.all()
+    return render (request, 'home.html', {'barang': barang, 'warna': warna})
+
+# class BarangDetailView(DetailView):
+#     model = Produk
+#     template_name = 'produk-detail.html'
+#     context_object_name = 'barang'
+
+def barangs(request, pk):
+    barang = Produk.objects.get(id=pk)
+    warna = Warna.objects.filter(object_id=pk)
+    return render(request, 'product.html', {'barang': barang, 'warna': warna})
 
 def akun(request):
     return render (request, 'account-details.html',{})

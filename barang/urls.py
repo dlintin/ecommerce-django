@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.home, name='barang-home'), 
+    path('item_detail/<int:pk>/', views.barangs, name='item-detail'),
     #jika ulr blog/ kosong maka akan memanggil fungsi "def home" dalam views
     path('akun/', views.akun, name='akun-home'), 
     

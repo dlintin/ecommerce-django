@@ -16,6 +16,7 @@ class Produk(models.Model):
     namaproduk = models.CharField(max_length=50)
     harga = models.DecimalField(max_digits=1000000, decimal_places=2)
     stok = models.IntegerField()
+    gambar_barang = models.ImageField(upload_to="images", null=True)
     keterangan = models.TextField() 
     kategori_produk = models.ForeignKey(KategoriBarang, on_delete=models.CASCADE, null=True)
     def __str__(self):

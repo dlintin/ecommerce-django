@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% block content %}
+
+    <div class="page-content">
+        <div class="holder mt-0">
+            <div class="container">
+                <ul class="breadcrumbs">
+                
+                </ul>
+            </div>
+        </div>
+        <div class="holder mt-0">
+            <div class="container">
+                <div class="row prd-block prd-block--mobile-image-first js-prd-gallery" id="prdGallery100">
+                    <div class="col-md-6 col-xl-5">
+                        <div class="prd-block_info js-prd-m-holder mb-2 mb-md-0"></div><!-- Product Gallery -->
+                        <div class="prd-block_main-image main-image--slide js-main-image--slide">
+                            <div class="prd-block_main-image-holder js-main-image-zoom" data-zoomtype="inner">
+                                <div class="prd-block_main-image-video js-main-image-video"><video loop muted preload="metadata" controls="controls">
+                                        <source src="#"></video>
+                                    <div class="gdw-loader"></div>
+                                </div>
+                                <div class="prd-has-loader">
+                                
+                                    <div class="gdw-loader"></div><img src="{{ barang.gambar_barang.url }}" class="zoom" alt="" data-zoom-image="{{ barang.gambar_barang.url }}">
+                                </div>
+                                <div class="prd-block_main-image-next slick-next js-main-image-next">NEXT</div>
+                                <div class="prd-block_main-image-prev slick-prev js-main-image-prev">PREV</div>
+                            </div>
+                            <div class="prd-block_main-image-links"><a data-fancybox data-width="900" href="https://www.youtube.com/watch?v=Zk3kr7J_v3Q" class="prd-block_video-link"><i class="icon icon-play"></i></a> <a href="images/products/large/product-01.jpg" class="prd-block_zoom-link"><i class="icon icon-zoomin"></i></a></div>
+                        </div>
+                        <div class="product-previews-wrapper">
+                            <div class="product-previews-carousel" id="previewsGallery100">                
+                            {% for warnas in warna %}
+                            <a href="#" data-value="{{ warnas.nama_warna }}" data-image="{{ warnas.gambar.url }}" data-zoom-image="{{ warnas.gambar.url }}">
+                            <img src="{{ warnas.gambar.url }}" alt=""></a>
+                            {% endfor %}
+                            </div>
+                        </div>
+                        <!-- /Product Gallery -->
+                    </div>
+                    <div class="col-md">
+                        <div class="prd-block_info">
+                            <div class="js-prd-d-holder prd-holder">
+                                <div class="prd-block_title-wrap">
+                                    <h1 class="prd-block_title">{{ barang.namaproduk }}</h1>
+                                    <div class="prd-block__labels"></div>
+                                </div>
+                                <div class="prd-block_info-top">
+                                   
+                                    <div class="prd-availability">Tersedia: <span>{{ barang.stok}} item</span></div>
+                                </div>
+                                <div class="prd-block_description topline">
+                                    <p>{{ barang.keterangan }}</p>
+                                </div>
+                            </div>
+                            <div class="prd-block_options topline">
+                                <div class="prd-color swatches"><span class="option-label">Warna:</span> <select class="form-control input-sm">
+                                    {% for warnas in warna %}
+                                        <option value="{{ warnas.nama_warna }}">{{ warnas.nama_warna }}</option>
+                                    {% endfor %}
+                                    </select>
+                                    <ul class="color-list color-list--sm">
+                                        {% for warnas in warna %}
+                                        <li class=""><a href="#" data-toggle="tooltip" data-placement="top" title="{{ warnas.nama_warna }}" data-value="{{ warnas.nama_warna }}" data-image="{{ warnas.gambar.url }}"><span class="value"><img src="{{ warnas.gambar.url }}" alt=""></span></a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            
+                            </div>
+                            <div class="prd-block_actions topline">
+                                <div class="prd-block_price"><span class="prd-block_price--actual">Rp.180.000</span> </div>
+                                <div class="btn-wrap"><button class="btn btn--add-to-cart" data-fancybox data-src="#modalCheckOut"><i class="icon icon-handbag"></i><span>Beli</span></button></div>
+                                
+                            </div>
+                            <div class="prd-safecheckout topline">
+                              
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 mt-3 mt-xl-0 sidebar-product">
+                        <div class="shop-features-style4"><a href="#" class="shop-feature">
+                                <div class="shop-feature-icon"><i class="icon-box3"></i></div>
+                                <div class="shop-feature-text">
+                                    <div class="text1">Pengiriman paket</div>
+                                    <div class="text2">Pengiriman langsung diproses setelah pembayaran</div>
+                                </div>
+                            </a><a href="#" class="shop-feature">
+                                <div class="shop-feature-icon"><i class="icon-arrow-left-circle"></i></div>
+                                <div class="shop-feature-text">
+                                    <div class="text1">100% jaminan kepuasan</div>
+                                    <div class="text2">Jika barang tiadk sesuai uang kembali</div>
+                                </div>
+                            </a><a href="#" class="shop-feature">
+                                <div class="shop-feature-icon"><i class="icon-call"></i></div>
+                                <div class="shop-feature-text">
+                                    <div class="text1">24/7 customer support</div>
+                                    <div class="text2">Telepon kami kapan saja</div>
+                                </div>
+                            </a></div>
+                        <div class="js-countdown-wrap">
+                            <div class="countdown-box">
+                                {% comment %} <div class="countdown js-countdown" data-promoperiod="50000"></div> {% endcomment %}
+                                <!--<div class="countdown js-countdown" data-countdown="2018/05/01"></div>-->
+                            </div>
+                            <div class="promo-text">
+                               
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="holder mt-2 mt-sm-5">
+                <div class="container">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs product-tab">
+                 
+                        <li class="nav-item"><a href="#Tab4" class="nav-link" data-toggle="tab">Cara Memilih Ukuran</a></li>
+  
+                    </ul><!-- Tab panes -->
+                    <div class="tab-content">
+ 
+                        <div role="tabpanel" class="tab-pane fade" id="Tab4">
+                           
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table--size">
+                                    <tr>
+                                        <th scope="row">US Sizes</th>
+                                        <td>6</td>
+                                        <td>6,5</td>
+                                        <td>7</td>
+                                        <td>7,5</td>
+                                        <td>8</td>
+                                        <td>8,5</td>
+                                        <td>9</td>
+                                        <td>9,5</td>
+                                        <td>10</td>
+                                        <td>10,5</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Euro Sizes</th>
+                                        <td>39</td>
+                                        <td>39</td>
+                                        <td>40</td>
+                                        <td>40-41</td>
+                                        <td>41</td>
+                                        <td>41-42</td>
+                                        <td>42</td>
+                                        <td>42-43</td>
+                                        <td>43</td>
+                                        <td>43-44</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">UK Sizes</th>
+                                        <td>5,5</td>
+                                        <td>6</td>
+                                        <td>6,5</td>
+                                        <td>7</td>
+                                        <td>7,5</td>
+                                        <td>8</td>
+                                        <td>8,5</td>
+                                        <td>9</td>
+                                        <td>9,5</td>
+                                        <td>10</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Inches</th>
+                                        <td>9.25&quot;</td>
+                                        <td>9.5&quot;</td>
+                                        <td>9.625&quot;</td>
+                                        <td>9.75&quot;</td>
+                                        <td>9.9375&quot;</td>
+                                        <td>10.125&quot;</td>
+                                        <td>10.25&quot;</td>
+                                        <td>10.5&quot;</td>
+                                        <td>10.625&quot;</td>
+                                        <td>10.75&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">CM</th>
+                                        <td>23,5</td>
+                                        <td>24,1</td>
+                                        <td>24,4</td>
+                                        <td>24,8</td>
+                                        <td>25,4</td>
+                                        <td>25,7</td>
+                                        <td>26</td>
+                                        <td>26,7</td>
+                                        <td>27</td>
+                                        <td>27,3</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+    {% endblock %}
