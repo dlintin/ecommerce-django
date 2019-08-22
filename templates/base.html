@@ -30,7 +30,13 @@
         </div>
     </div>
     <header class="hdr global_width hdr_sticky hdr-mobile-style2">
-       
+       {% if messages %}
+    {% for message in messages %}            
+                        <div class="alert alert-success">
+                        <center>{{ message }}</center>
+                        </div>
+            {% endfor %}
+        {% endif %}
         <!-- /Promo TopLine -->
         <!-- Mobile Menu -->
         <div class="mobilemenu js-push-mbmenu">
@@ -274,7 +280,7 @@
                                         <ul>
                                             <li><a href="{% url 'akun-home' %}"><i class="icon icon-person-fill"></i><span>Akun Saya</span></a></li>
                                             <li><a href="{% url 'login' %}"><i class="icon icon-lock"></i><span>Masuk</span></a></li>
-                                            <li><a href="{% url 'register' %}"><i class="icon icon-person-fill-add"></i><span>Daftar</span></a></li>
+                                            <li><a href="{% url 'registrasi' %}"><i class="icon icon-person-fill-add"></i><span>Daftar</span></a></li>
                                             <li><a href="{% url 'checkouts-home' %}"><i class="icon icon-check-box"></i><span>Checkout</span></a></li>
                                         </ul>
                                     </div>
@@ -354,6 +360,7 @@
             </div>
         </div>
     </header>
+
 
 {% block content %}
 <!--konten berada disini -->

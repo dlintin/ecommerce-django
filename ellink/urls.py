@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
 from django.urls import path, include 
+from pembeli import views as user_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('barang.urls')),
+    path('registrasi/', user_views.registrasi, name='registrasi'),
     
 ]
