@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+    <div class="page-content">
+        <div class="holder mt-0">
+            <div class="container">
+                <ul class="breadcrumbs">
+                    <li><a href="index-2.html">Home</a></li>
+                    <li><span>Log Out</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="holder mt-0">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-sm-8 col-md-6">
+                        <h2 class="text-center">Log Out</h2>
+                        <div class="form-wrapper">
+                            <center><p>Anda telah keluar.  <a href="{% url 'login' %}">Login</a></p></center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -278,10 +278,14 @@
                                     <div class="container">
                                         <div class="dropdn-close">Tutup</div>
                                         <ul>
+                                            {% if user.is_authenticated %}
                                             <li><a href="{% url 'akun-home' %}"><i class="icon icon-person-fill"></i><span>Akun Saya</span></a></li>
-                                            <li><a href="{% url 'login' %}"><i class="icon icon-lock"></i><span>Masuk</span></a></li>
-                                            <li><a href="{% url 'registrasi' %}"><i class="icon icon-person-fill-add"></i><span>Daftar</span></a></li>
+                                            <li><a href="{% url 'logout' %}"><i class="icon icon-person-fill"></i><span>Log Out</span></a></li>
                                             <li><a href="{% url 'checkouts-home' %}"><i class="icon icon-check-box"></i><span>Checkout</span></a></li>
+                                            {% else %}      
+                                            <li><a href="{% url 'login' %}"><i class="icon icon-lock"></i><span>Masuk</span></a></li>
+                                            <li><a href="{% url 'register' %}"><i class="icon icon-person-fill-add"></i><span>Daftar</span></a></li>
+                                            {% endif %}                                                                        
                                         </ul>
                                     </div>
                                 </div>

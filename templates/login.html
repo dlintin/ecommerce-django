@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
 {% load staticfiles %}
 {% block content %}
     <div class="page-content">
@@ -19,11 +20,14 @@
                             <h2 class="text-center">Masuk</h2>
                             <div class="form-wrapper">
                                 <p>Jika sudah punya akun silahkan login.</p>
-                                <form action="#">
-                                    <div class="form-group"><input type="text" class="form-control" placeholder="Email"></div>
+                                <form action="#" method="POST">
+                                {% csrf_token %}
+                                 {{ form|crispy }}
+                                  <button type="submit" class="btn ml-1">Login</button>
+                                    {% comment %} <div class="form-group"><input type="text" class="form-control" placeholder="Email"></div>
                                     <div class="form-group"><input type="password" class="form-control" placeholder="Password"></div>
-                                    {% comment %} <p class="text-uppercase"><a href="#" class="js-toggle-forms">Forgot Your Password?</a></p> {% endcomment %}
-                                    <div class="clearfix"><input id="checkbox1" name="checkbox1" type="checkbox" checked="checked"> <label for="checkbox1">Ingat Saya</label></div><button type="submit" class="btn">Masuk</button>
+                                    <p class="text-uppercase"><a href="#" class="js-toggle-forms">Forgot Your Password?</a></p>
+                                    <div class="clearfix"><input id="checkbox1" name="checkbox1" type="checkbox" checked="checked"> <label for="checkbox1">Ingat Saya</label></div><button type="submit" class="btn">Masuk</button> {% endcomment %}
                                 </form>
                             </div>
                         </div>

@@ -10,7 +10,7 @@ urlpatterns = [
     # path('item_detail/<int:pk>/', views.barangs, name='item-detail'),
 
     
-    path('registrasi/', views.registrasi, name='registrasi'), 
+    # path('register/', views.register, name='register'), 
     
 
     

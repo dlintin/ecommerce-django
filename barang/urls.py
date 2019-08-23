@@ -9,15 +9,14 @@ urlpatterns = [
     path('', views.home, name='barang-home'), 
     path('item_detail/<int:pk>/', views.barangs, name='item-detail'),
     #jika ulr blog/ kosong maka akan memanggil fungsi "def home" dalam views
-    path('akun/', views.akun, name='akun-home'), 
-    
+  
     path('checkouts/', views.checkouts, name='checkouts-home'), 
     
     path('history/', views.history, name='account-history'), 
     
     path('detail/', views.detail, name='barang-detail'), 
     
-    path('login/', views.login, name='login'), 
+    # path('login/', views.login, name='login'), 
     
     path('keranjang/', views.keranjang, name='keranjang'), 
     

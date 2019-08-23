@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Produk, Warna, KategoriBarang
 from django.views.generic import ListView, DetailView
 from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def home(request):
@@ -19,23 +20,23 @@ def barangs(request, pk):
     warna = Warna.objects.filter(object_id=pk)
     return render(request, 'product.html', {'barang': barang, 'warna': warna})
 
-def akun(request):
-    return render (request, 'account-details.html',{})
+
 
 def checkouts(request):
     return render (request, 'checkouts.html',{})
 
+@login_required
 def history(request):
     return render (request, 'account-history.html',{})
 
 def detail(request):
     return render (request, 'produk-detail.html',{})
 
-def login(request):
-    return render (request, 'login.html',{})
+# def login(request):
+#     return render (request, 'login.html',{})
 
-def register(request):
-    return render (request, 'register.html',{})
-
+# def register(request):
+#     return render (request, 'register.html',{})
+@login_required
 def keranjang(request):
     return render (request, 'keranjang.html',{})
