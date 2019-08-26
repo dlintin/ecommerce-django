@@ -10,17 +10,10 @@ def home(request):
     warna = Warna.objects.all()
     return render (request, 'home.html', {'barang': barang, 'warna': warna})
 
-# class BarangDetailView(DetailView):
-#     model = Produk
-#     template_name = 'produk-detail.html'
-#     context_object_name = 'barang'
-
 def barangs(request, pk):
     barang = Produk.objects.get(id=pk)
     warna = Warna.objects.filter(object_id=pk)
     return render(request, 'product.html', {'barang': barang, 'warna': warna})
-
-
 
 def checkouts(request):
     return render (request, 'checkouts.html',{})
@@ -32,11 +25,8 @@ def history(request):
 def detail(request):
     return render (request, 'produk-detail.html',{})
 
-# def login(request):
-#     return render (request, 'login.html',{})
-
-# def register(request):
-#     return render (request, 'register.html',{})
 @login_required
 def keranjang(request):
     return render (request, 'keranjang.html',{})
+
+

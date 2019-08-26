@@ -23,18 +23,6 @@
                             {% csrf_token %}
                             {{ form|crispy }}
 
-                                {% comment %} <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group"><input type="text" class="form-control" placeholder="Nama Depan"></div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group"><input type="text" class="form-control" placeholder="Nama Belakang"></div>
-                                    </div>
-                                </div>
-                                <div class="form-group"><input type="text" class="form-control" placeholder="E-mail"></div>
-                                <div class="form-group"><input type="password" class="form-control" placeholder="Password"></div>
-                                <div class="form-group"><input type="password" class="form-control" placeholder="Ulangi Password"></div> {% endcomment %}
-                                {% comment %} <div class="clearfix"><input id="checkbox1" name="checkbox1" type="checkbox" checked="checked"> <label for="checkbox1">By registering your details you agree to our Terms and Conditions and privacy and cookie policy</label></div> {% endcomment %}
                                 <div class="text-center"><button class="btn" type="submit">Buat Akun</button></div>
                             </form>
                         </div>

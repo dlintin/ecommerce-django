@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfilUpdateForm
 
 
 # Create your views here.
@@ -20,4 +20,35 @@ def register(request):
 
 @login_required
 def akun(request):
-    return render (request, 'account-details.html',{})
+    if request.method == 'POST': 
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfilUpdateForm(request.POST,  instance=request.user.profil)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save() 
+            messages.success(request, f'Profil telah diupdate!')
+            return redirect('akun-home')
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfilUpdateForm(instance=request.user.profil)
+    context = {
+        'u_form': u_form,
+        'p_form': p_form
+    }
+    return render (request, 'account-details.html',context)
+
+# jika menggunakan gambar
+# @login_required
+# def akun(request):
+#     if method == 'POST': 
+#         u_form = UserUpdateForm(request.POST, instance=request.user)
+#         # jika menggunakan gambar
+#         p_form = ProfilUpdateForm(request.POST, request.FILES, instance=request.user.profil)
+#     else:
+#         u_form = UserUpdateForm(instance=request.user)
+#         p_form = ProfilUpdateForm(instance=request.user.profil)
+#     context = {
+#         'u_form': u_form,
+#         'p_form': p_form
+#     }
+#     return render (request, 'account-details.html',context)

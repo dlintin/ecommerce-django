@@ -6,14 +6,8 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-
     # path('item_detail/<int:pk>/', views.barangs, name='item-detail'),
-
-    
-    # path('register/', views.register, name='register'), 
-    
-
-    
+    # path('register/', views.register, name='register'),
     ]
 
 if settings.DEBUG:
