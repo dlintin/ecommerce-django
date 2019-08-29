@@ -5,4 +5,4 @@ class PembeliConfig(AppConfig):
     name = 'pembeli'
 
     def ready(self):
-        import users.signals
+        import pembeli.signals
