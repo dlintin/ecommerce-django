@@ -4,10 +4,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.base import View
-
+from .forms import *
 from .models import *
+from pembeli.models import *
 from django.views.generic import ListView, DetailView
 from django.views.generic import TemplateView
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -25,8 +27,27 @@ def barangs(request, pk):
     warna = Warna.objects.filter(object_id=pk)
     return render(request, 'product.html', {'barang': barang, 'warna': warna})
 
-def checkouts(request):
-    return render (request, 'checkouts.html',{})
+class Cekot(LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        pembeli_form = PembeliForm()
+        kurir_form = KurirForm()
+        try:
+            order = Cart.objects.filter(user=self.request.user, ordered=False)
+            total = (Cart.objects
+                .filter(user=self.request.user, ordered=False)
+                .aggregate(
+                total=Sum('quantity', field="item*quantity")
+            )['total']
+                )
+
+            # return render(self.request, 'keranjang.html', {'order':order, 'total':total})
+            return render(self.request, 'checkouts.html',{'order':order, 'total':total, 'pembeli_form': pembeli_form, 'kurir_form': kurir_form})
+        except ObjectDoesNotExist:
+            messages.warning(self.request, "You do not have an active order")
+            return redirect("/")
+
+
+
 
 @login_required
 def history(request):

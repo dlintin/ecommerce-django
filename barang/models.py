@@ -1,9 +1,15 @@
+from datetime import datetime
+from django.contrib.auth.models import User
 from django.conf import settings
 from django.db import models
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
+from django.http import request
+
+from pembeli.models import Profile
 from django.db.models import Sum
 from django.shortcuts import reverse
+from django.utils import timezone
 
 
 
@@ -56,27 +62,15 @@ class Cart(models.Model):
             subtotal = sum(self.quantity * self.item.harga)
             total += subtotal
         return total
-#
-# class Order(models.Model):
-#     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
-#     items = models.ManyToManyField(Cart)
-#     start_date = models.DateTimeField(auto_now_add=True)
-#     ordered_date = models.DateTimeField()
-#     ordered = models.BooleanField(default=False)
-#     shipping_address = models.ForeignKey(
-#         'Address', related_name='shipping_address', on_delete=models.SET_NULL, blank=True, null=True)
-#     payment = models.ForeignKey(
-#         'Payment', on_delete=models.SET_NULL, blank=True, null=True)
-#     being_delivered = models.BooleanField(default=False)
-#     received = models.BooleanField(default=False)
+
 
 
 class Kurir(models.Model):
-    namakurir = models.CharField(max_length=50)
-    hargakilo = models.DecimalField(max_digits=1000000, decimal_places=2)
+    nama_kurir = models.CharField(max_length=50)
+    tarif = models.DecimalField(max_digits=1000000, decimal_places=2)
 
     def __str__(self):
-        return self.namakurir
+        return self.nama_kurir
 
     class Meta:
         verbose_name_plural = "Kurir"
@@ -85,3 +79,21 @@ class Kurir(models.Model):
 class Pembayaran(models.Model):
     idorder = models.IntegerField()
     statpembayaran = models.CharField(max_length=50)
+
+metode_pembayaran = (
+    ('cod','Cash On Delivery'),
+    ('transfer', 'Bank Transfer'),
+)
+
+class Order(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    nama_penerima = models.CharField(max_length=30)
+    items = models.ManyToManyField(Cart)
+    tanggal_pesan = models.DateTimeField(default=datetime.now, blank=True)
+    ordered = models.BooleanField(default=False)
+    alamat_pengiriman = models.TextField(null=True)
+    tlp_penerima = models.CharField(max_length=20, null=True)
+    pembayaran = models.CharField(choices=metode_pembayaran, max_length=20)
+    kurir_pengiriman = models.ForeignKey(Kurir, on_delete=models.CASCADE)
+    being_delivered = models.BooleanField(default=False)
+    received = models.BooleanField(default=False)

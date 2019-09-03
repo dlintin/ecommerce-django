@@ -9,8 +9,6 @@ urlpatterns = [
     path('', views.home, name='barang-home'), 
     path('item_detail/<int:pk>/', views.barangs, name='item-detail'),
     #jika ulr blog/ kosong maka akan memanggil fungsi "def home" dalam views
-  
-    path('checkouts/', views.checkouts, name='checkouts-home'), 
     
     path('history/', views.history, name='account-history'), 
     
@@ -21,6 +19,8 @@ urlpatterns = [
     path('add_cart/<int:pk>/', views.add_to_cart, name='add-cart'),
 
     path('cart/', OrderSummaryView.as_view(), name='cart'),
+
+    path('checkouts/', Cekot.as_view(), name='checkouts-home'),
 
     ]
 

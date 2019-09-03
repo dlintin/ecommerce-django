@@ -2,6 +2,7 @@
 {% extends 'base.html' %}
 
 {% load staticfiles %}
+{% load crispy_forms_tags %}
 {% block content %}
 
     <div class="page-content">
@@ -24,17 +25,9 @@
                                 <div class="card-body">
                                     <h2>ALAMAT PENGIRIMAN</h2>
                                     <p><a href="login.html">Masuk</a> atau <a href="#">Daftar</a> agar lebih muddah.</p>
-                                    <div class="row mt-2">
-                                        <div class="col-sm-6"><label class="text-uppercase">Nama Depan:</label>
-                                            <div class="form-group"><input type="text" class="form-control"></div>
-                                        </div>
-                                        <div class="col-sm-6"><label class="text-uppercase">Nama Belakang:</label>
-                                            <div class="form-group"><input type="text" class="form-control"></div>
-                                        </div>
-                                    </div>
-                                    <label class="text-uppercase">Alamat Lengkap:</label>
-                                    <div class="form-group"><input type="text" class="form-control"></div><label class="text-uppercase">No HP/Tlp:</label>
-                                    <div class="form-group"><input type="text" class="form-control"></div>
+                                    {% csrf_token %}
+                                    {{ pembeli_form|crispy }}
+
                                     {% comment %} <div class="clearfix"><input id="formcheckoutCheckbox1" name="checkbox1" type="checkbox"> <label for="formcheckoutCheckbox1">Save address to my account</label></div> {% endcomment %}
                                 </div>
                             </div>
@@ -43,22 +36,20 @@
                         <div class="col-md-4 mt-2 mt-md-0">
                             <div class="card card--grey">
                                 <div class="card-body">
-                                    <h2>KURIR PENGIRIMAN</h2>
-                                    <div class="clearfix"><input id="formcheckoutRadio1" value="" name="radio1" type="radio" class="radio" checked="checked"> <label for="formcheckoutRadio1">Standard Delivery $2.99 (3-5 days)</label></div>
-                                    <div class="clearfix"><input id="formcheckoutRadio2" value="" name="radio1" type="radio" class="radio"> <label for="formcheckoutRadio2">Express Delivery $10.99 (1-2 days)</label></div>
-                                    <div class="clearfix"><input id="formcheckoutRadio3" value="" name="radio1" type="radio" class="radio"> <label for="formcheckoutRadio3">Same-Day $20.00 (Evening Delivery)</label></div>
+                                    <h2>KURIR & PEMBAYARAN</h2>
+                                    {{ kurir_form|crispy }}
                                 </div>
                             </div>
                             <div class="mt-2"></div>
-                            <div class="card card--grey">
-                                <div class="card-body">
-                                    <h2>METODE PEMBAYARAN</h2>
-                                    <div class="clearfix"><input id="formcheckoutRadio4" value="" name="radio2" type="radio" class="radio" checked="checked"> <label for="formcheckoutRadio4">COD / BAYAR DITEMPAT</label></div>
-                                    <div class="clearfix"><input id="formcheckoutRadio4" value="" name="radio2" type="radio" class="radio" checked="checked"> <label for="formcheckoutRadio4">TRANSFER BANK</label></div>
-                                   
-                                </div>
-                            </div>
-                            <div class="mt-2"></div>
+<!--                            <div class="card card&#45;&#45;grey">-->
+<!--                                <div class="card-body">-->
+<!--                                    <h2>METODE PEMBAYARAN</h2>-->
+<!--                                    <div class="clearfix"><input id="formcheckoutRadio4" value="" name="radio2" type="radio" class="radio" checked="checked"> <label for="formcheckoutRadio4">COD / BAYAR DITEMPAT</label></div>-->
+<!--                                    <div class="clearfix"><input id="formcheckoutRadio4" value="" name="radio2" type="radio" class="radio" checked="checked"> <label for="formcheckoutRadio4">TRANSFER BANK</label></div>-->
+<!--                                   -->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="mt-2"></div>-->
                             
                         </div>
                         <div class="col-md-4 mt-2 mt-md-0">
@@ -71,16 +62,18 @@
                                     <div class="cart-table-prd-price"><b>HARGA</b></div>
                                 </div>
 
-
+                                {% for order_item in order %}
                                 <div class="cart-table-prd">
-                                    <div class="cart-table-prd-image"><a href="#"><img src="images/products/xsmall/product-05.jpg" alt=""></a></div>
+
+<!--                                    <div class="cart-table-prd-image"><a href="#"><img src="images/products/xsmall/product-05.jpg" alt=""></a></div>-->
                                     <div class="cart-table-prd-name">
-                                        <h2><a href="#">Checkered shirt</a></h2>
+                                        <h2><a href="#">{{ order_item.item.namaproduk }}</a></h2>
                                     </div>
-                                    <div class="cart-table-prd-qty"><b>1</b></div>
-                                    <div class="cart-table-prd-price"><b>$ 75.00</b></div>
+                                    <div class="cart-table-prd-qty"><b>{{ order_item.quantity }}</b></div>
+                                    <div class="cart-table-prd-price"><b>IDR {{ order_item.get_total_item_price }}</b></div>
+
                                 </div>
-                             
+                              {% endfor %}
                             </div>
                             <div class="card-total-sm">
                                 <div class="float-right">Subtotal <span class="card-total-price">$ 294.00</span></div>
