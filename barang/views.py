@@ -12,6 +12,8 @@ from django.views.generic import TemplateView
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 # Create your views here.
+from django.db.models import Sum, F, FloatField
+
 
 def home(request, **kwargs):
     barang = Produk.objects.all()
@@ -33,14 +35,10 @@ class Cekot(LoginRequiredMixin, View):
         kurir_form = KurirForm()
         try:
             order = Cart.objects.filter(user=self.request.user, ordered=False)
-            total = (Cart.objects
-                .filter(user=self.request.user, ordered=False)
-                .aggregate(
-                total=Sum('quantity', field="item*quantity")
-            )['total']
-                )
+            # total = (Cart.objects.filter(user=self.request.user, ordered=False).aggregate(total=Sum('quantity', field='harga*quantity'))['total'])
 
-            # return render(self.request, 'keranjang.html', {'order':order, 'total':total})
+            total = Cart.objects.filter(user=self.request.user, ordered=False).aggregate(total=Sum(F('quantity') * F('harga'), output_field=FloatField()))['total']
+
             return render(self.request, 'checkouts.html',{'order':order, 'total':total, 'pembeli_form': pembeli_form, 'kurir_form': kurir_form})
         except ObjectDoesNotExist:
             messages.warning(self.request, "You do not have an active order")
@@ -66,12 +64,8 @@ class OrderSummaryView(LoginRequiredMixin, View):
 
         try:
             order = Cart.objects.filter(user=self.request.user, ordered=False)
-            total = (Cart.objects
-                .filter(user=self.request.user, ordered=False)
-                .aggregate(
-                total=Sum('quantity', field="item*quantity")
-            )['total']
-                )
+            total = Cart.objects.filter(user=self.request.user, ordered=False).aggregate(
+                total=Sum(F('quantity') * F('harga'), output_field=FloatField()))['total']
 
             return render(self.request, 'keranjang.html', {'order':order, 'total':total})
         except ObjectDoesNotExist:
@@ -95,6 +89,7 @@ def add_to_cart(request, pk):
         cart_itemx, created = Cart.objects.get_or_create(
             item=item,
             user=request.user,
+            harga=item.harga,
             ordered=False
         )
         cart_itemx.save()

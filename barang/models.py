@@ -45,6 +45,7 @@ class Cart(models.Model):
     ordered = models.BooleanField(default=False)
     item = models.ForeignKey(Produk, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
+    harga = models.DecimalField(max_digits=1000000, decimal_places=2, null=True)
 
     def __str__(self):
         return f"{self.quantity} of {self.item.harga}"
@@ -87,7 +88,7 @@ metode_pembayaran = (
 
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    nama_penerima = models.CharField(max_length=30)
+    nama_penerima = models.CharField(max_length=30, null=True)
     items = models.ManyToManyField(Cart)
     tanggal_pesan = models.DateTimeField(default=datetime.now, blank=True)
     ordered = models.BooleanField(default=False)
