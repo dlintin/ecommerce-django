@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'barang',
     'pembeli',
-    'order',
     'testing',
     'crispy_forms',
 ]

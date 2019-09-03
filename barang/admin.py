@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Produk, Warna, KategoriBarang
+from .models import *
 from django.contrib.contenttypes.admin import GenericTabularInline
 
 
@@ -15,3 +15,5 @@ class ProductAdmin(admin.ModelAdmin):
     
 admin.site.register(Produk, ProductAdmin)
 admin.site.register(KategoriBarang)
+admin.site.register(Cart)
+admin.site.register(Kurir)

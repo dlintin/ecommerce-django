@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load cart_template_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -281,7 +282,7 @@
                                             {% if user.is_authenticated %}
                                             <li><a href="{% url 'akun-home' %}"><i class="icon icon-person-fill"></i><span>Akun Saya</span></a></li>
                                             <li><a href="{% url 'logout' %}"><i class="icon icon-person-fill"></i><span>Log Out</span></a></li>
-                                            <li><a href="{% url 'checkouts-home' %}"><i class="icon icon-check-box"></i><span>Checkout</span></a></li>
+<!--                                            <li><a href="{% url 'checkouts-home' %}"><i class="icon icon-check-box"></i><span>Checkout</span></a></li>-->
                                             {% else %}      
                                             <li><a href="{% url 'login' %}"><i class="icon icon-lock"></i><span>Masuk</span></a></li>
                                             <li><a href="{% url 'register' %}"><i class="icon icon-person-fill-add"></i><span>Daftar</span></a></li>
@@ -315,37 +316,8 @@
                         </div>
                         <div class="next-menu-scroll icon-angle-right next-menu-js"></div>
                         <!--//navigation-->
-                        <div class="col-auto minicart-holder">
-                            <div class="minicart minicart-js"><a href="" class="minicart-link"><i class="icon icon-handbag"></i> <span class="minicart-qty">3</span> <span class="minicart-title">Keranjang Belanja</span> <span class="minicart-total">IDR 750.00</span></a>
-                                <div class="minicart-drop">
-                                    <div class="container">
-                                        <div class="minicart-drop-close">TUTUP</div>
-                                        <div class="minicart-drop-content">
-                                            <h3>Item ditambahkan:</h3>
-                                           
-                                            <div class="minicart-prd">
-                                                <div class="minicart-prd-image"><a href="#"><img src="images/products/product-placeholder.png" data-srcset="images/products/xsmall/product-05.jpg" class="lazyload" alt=""></a></div>
-                                                <div class="minicart-prd-name">
-                                                    <h5><a href="#">canverse</a></h5>
-                                                    <h2><a href="#">Checkered shirt</a></h2>
-                                                </div>
-                                                <div class="minicart-prd-qty"><span>jumalah:</span> <b>1</b></div>
-                                                <div class="minicart-prd-price"><span>harga:</span> <b>$ 75.00</b></div>
-                                                <div class="minicart-prd-action"><a href="#" class="icon-heart js-label-wishlist"></a> <a href="product.html" class="icon-pencil"></a> <a href="#" class="icon-cross js-product-remove"></a></div>
-                                            </div>
-                                         
-                                            <div class="minicart-drop-total">
-                                                <div class="float-right"><span class="minicart-drop-summa"><span>Subtotal:</span> <b>$ 294.00</b></span>
-                                                    <div class="minicart-drop-btns-wrap"><a href="{% url 'checkouts-home' %}" class="btn"><i class="icon-check-box"></i><span>checkout</span></a> 
-                                                    <a href="cart.html" class="btn btn--alt"><i class="icon-handbag"></i><span>lihat keranjangx</span></a></div>
-                                                </div>
-                                                <div class="float-left"><a href="{% url 'keranjang' %}" class="btn btn--alt"><i class="icon-handbag"></i><span>lihat keranjang</span></a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<!--                        <div><a href="{% url 'cart' %}" class="minicart-link"><i class="icon icon-handbag"></i> <span class="minicart-qty">{{ qty }}</span> </a></div>-->
+                        <div><a href="{% url 'cart' %}" class="btn"><i class="icon-handbag"></i> {{ qty }} Item</a></div>
                     </div>
                 </div>
             </div>

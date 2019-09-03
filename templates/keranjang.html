@@ -17,19 +17,20 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="cart-table">
-                            
-                            
+
+                            {% for order_item in order %}
                             <div class="cart-table-prd">
                                 <div class="cart-table-prd-image"><a href="#"><img src="images/products/xsmall/product-05.jpg" alt=""></a></div>
                                 <div class="cart-table-prd-name">
-                                    <h5><a href="#">canverse</a></h5>
-                                    <h2><a href="#">Checkered shirt</a></h2>
+
+                                    <h2><a href="#">{{ order_item.item.namaproduk }}</a></h2>
+                                    <h5><a href="#"> IDR {{ order_item.item.harga }}</a></h5>
                                 </div>
-                                <div class="cart-table-prd-qty"><span>jumlah:</span> <b>1</b></div>
-                                <div class="cart-table-prd-price"><span>harga:</span> <b>IDR 75.00</b></div>
+                                <div class="cart-table-prd-qty"><span>jumlah:</span> <b>{{ order_item.quantity }}</b></div>
+                                <div class="cart-table-prd-price"><span>Total:</span> <b>IDR {{ order_item.get_total_item_price }}</b></div>
                                 <div class="cart-table-prd-action"><a href="#" class="icon-heart"></a> <a href="#" class="icon-pencil"></a> <a href="#" class="icon-cross"></a></div>
                             </div>
-                      
+                            {% endfor %}
                             <div class="cart-table-total">
                                 <div class="row">
                                     <div class="col-sm"><a href="#" class="btn btn--alt"><i class="icon-cross"></i><span>bersihkan keranjang belanja</span></a> <a href="#" class="btn btn--grey"><i class="icon-repeat"></i><span>update cart</span></a></div>
@@ -40,7 +41,8 @@
                     </div>
                     <div class="col-md-4">
                         <div class="sidebar-block">
-                            <div class="card-total text-uppercase">Subtotal <span class="card-total-price">IDR 294.00</span></div><a href="{% url 'checkouts-home' %}" class="btn btn--full btn--lg"><span>Lanjutkan Checkout</span></a>
+<!--                            <div class="card-total text-uppercase">Subtotal <span class="card-total-price">IDR {{ total }}</span></div>-->
+                            <a href="{% url 'checkouts-home' %}" class="btn btn--full btn--lg"><span>Lanjutkan Checkout</span></a>
                         </div>
                         
                     </div>

@@ -14,11 +14,14 @@ urlpatterns = [
     
     path('history/', views.history, name='account-history'), 
     
-    path('detail/', views.detail, name='barang-detail'), 
+    path('detail/', views.detail, name='barang-detail'),
     
-    # path('login/', views.login, name='login'), 
-    
-    path('keranjang/', views.keranjang, name='keranjang'), 
+    path('keranjang/', views.keranjang, name='keranjang'),
+
+    path('add_cart/<int:pk>/', views.add_to_cart, name='add-cart'),
+
+    path('cart/', OrderSummaryView.as_view(), name='cart'),
+
     ]
 
 

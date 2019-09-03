@@ -231,12 +231,12 @@
                                             <h2 class="prd-title"><a href="{% url 'barang-detail' %}">{{ barangs.namaproduk}}</a></h2>
                                             <div class="prd-rating prd-hidemobile"><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star"></i></div>
                                             <div class="prd-price">
-                                                <div class="price-new">IDR {{ barangs.harga}}</div>
+                                                <div class="price-new">IDR {{ barangs.harga }}</div>
                                             </div>
                                             <div class="prd-hover">
                                                 <div class="prd-action">
-                                                    <form action="#"><input type="hidden"> <button class="btn" data-fancybox data-src="#modalCheckOut"><i class="icon icon-handbag"></i><span>Masukkan Keranjang</span></button></form>
-                                                    <div class="prd-links"><a href="#" class="icon-eye prd-qview-link js-qview-link" data-fancybox data-src="#modalQuickView"></a></div>
+                                                    <form action="#"><input type="hidden"> <a class="btn" href="{% url 'add-cart' barangs.id %}" ><i class="icon icon-handbag"></i><span>Masukkan Keranjang</span></a></form>
+
                                             </div>
                                             </div>
                                         </div>
