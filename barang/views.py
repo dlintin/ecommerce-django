@@ -19,19 +19,30 @@ def home(request, **kwargs):
     barang = Produk.objects.all()
     warna = Warna.objects.all()
     # carts = Cart.objects.all()
-    qty = Cart.objects.count()
-    carts = Cart.objects.filter(user=request.user, ordered=False)
+
+    if request.user.is_authenticated:
+        qty = Cart.objects.filter(user=request.user, ordered=False).count()
+        carts = Cart.objects.filter(user=request.user, ordered=False)
     # jumlah = Cart.get_total_item_price(self)
-    return render (request, 'home.html', {'barang': barang, 'warna': warna, 'carts':carts, 'qty':qty,})
+        return render (request, 'home.html', {'barang': barang, 'warna': warna, 'carts':carts, 'qty':qty,})
+    else:
+        return render(request, 'home.html', {'barang': barang, 'warna': warna, })
+
 
 def barangs(request, pk):
     barang = Produk.objects.get(id=pk)
     warna = Warna.objects.filter(object_id=pk)
     return render(request, 'product.html', {'barang': barang, 'warna': warna})
 
+
 class Cekot(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
-        pembeli_form = PembeliForm()
+
+        user = Profile.objects.values_list('nama_lengkap', flat=True).get(user_id=self.request.user.id)
+        alamat = Profile.objects.values_list('alamat', flat=True).get(user_id=self.request.user.id)
+        tlp = Profile.objects.values_list('tlp', flat=True).get(user_id=self.request.user.id)
+
+        pembeli_form = PembeliForm(initial={'nama_penerima': user,'alamat_pengiriman': alamat,'tlp_penerima':tlp})
         kurir_form = KurirForm()
         try:
             order = Cart.objects.filter(user=self.request.user, ordered=False)
@@ -78,7 +89,7 @@ def add_to_cart(request, pk):
     item = Produk.objects.get(id=pk)
     isi = Cart.objects.filter(user_id=request.user,item_id=pk)
     if isi.exists():
-        cart_item = Cart.objects.get(
+        cart_item = Cart.objects.get(user_id=request.user,
             item_id=pk
         )
         cart_item.quantity +=1
