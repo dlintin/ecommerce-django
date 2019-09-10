@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-{% load format %}
 {% load staticfiles %}
 {% block content %}
 
@@ -72,7 +71,7 @@
                             
                             </div>
                             <div class="prd-block_actions topline">
-                                <div class="prd-block_price"><span class="prd-block_price--actual">Rp.{{ barang.harga|format:'{:0.2f}' }}</span> </div>
+                                <div class="prd-block_price"><span class="prd-block_price--actual">Rp.{{ barang.harga }}</span> </div>
                                 <div class="btn-wrap"><button class="btn btn--add-to-cart" data-fancybox data-src="#modalCheckOut"><i class="icon icon-handbag"></i><span>Beli</span></button></div>
                                 
                             </div>

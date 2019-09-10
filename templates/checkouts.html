@@ -18,16 +18,15 @@
             <div class="container">
                 <h1 class="text-center">Halamat Chekout</h1>
                 <div class="clearfix"></div>
-                <form action="#">
+                <form action="{% url 'ke_bayar' request.user.id %}" method="POST" enctype="multipart">
+                    {% csrf_token %}
                     <div class="row">
                         <div class="col-md-4">
                             <div class="card card--grey">
                                 <div class="card-body">
                                     <h2>ALAMAT PENGIRIMAN</h2>
                                     <p><a href="login.html">Masuk</a> atau <a href="#">Daftar</a> agar lebih muddah.</p>
-                                    {% csrf_token %}
                                     {{ pembeli_form|crispy }}
-
                                     {% comment %} <div class="clearfix"><input id="formcheckoutCheckbox1" name="checkbox1" type="checkbox"> <label for="formcheckoutCheckbox1">Save address to my account</label></div> {% endcomment %}
                                 </div>
                             </div>
@@ -82,6 +81,7 @@
                             
                             <div class="mt-2"></div>
                             <div class="clearfix"><button type="submit" class="btn btn--lg w-100">Bayar</button></div>
+
                         </div>
                     </div>
                 </form>

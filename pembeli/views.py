@@ -19,8 +19,6 @@ def register(request):
     return render(request, 'register.html', {'form':form})
 
 
-
-
 @login_required
 def akun(request):
     if request.method == 'POST':

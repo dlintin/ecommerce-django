@@ -17,8 +17,12 @@ class KurirForm(forms.ModelForm):
 
 
 
-# 1.nama, alamat, hp
-# #
-# # 2.kurir, metode_pembayaran
-# #
-# # 3.pesanan
+
+    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    # items = models.ManyToManyField(Cart)
+    # tanggal_pesan = models.DateTimeField(default=datetime.now, blank=True)
+    # ordered = models.BooleanField(default=False)
+
+    # being_delivered = models.BooleanField(default=False)
+    # received = models.BooleanField(default=False)

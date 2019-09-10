@@ -5,6 +5,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.base import View
 from .forms import *
+from django.http import HttpResponse
+from django.views import View
 from .models import *
 from pembeli.models import *
 from django.views.generic import ListView, DetailView
@@ -36,27 +38,34 @@ def barangs(request, pk):
 
 
 class Cekot(LoginRequiredMixin, View):
-    def get(self, *args, **kwargs):
-
+    def get(self, request, *args, **kwargs):
         user = Profile.objects.values_list('nama_lengkap', flat=True).get(user_id=self.request.user.id)
         alamat = Profile.objects.values_list('alamat', flat=True).get(user_id=self.request.user.id)
         tlp = Profile.objects.values_list('tlp', flat=True).get(user_id=self.request.user.id)
 
-        pembeli_form = PembeliForm(initial={'nama_penerima': user,'alamat_pengiriman': alamat,'tlp_penerima':tlp})
+        pembeli_form = PembeliForm(initial={'nama_penerima': user, 'alamat_pengiriman': alamat, 'tlp_penerima': tlp})
         kurir_form = KurirForm()
         try:
             order = Cart.objects.filter(user=self.request.user, ordered=False)
-            # total = (Cart.objects.filter(user=self.request.user, ordered=False).aggregate(total=Sum('quantity', field='harga*quantity'))['total'])
-
-            total = Cart.objects.filter(user=self.request.user, ordered=False).aggregate(total=Sum(F('quantity') * F('harga'), output_field=FloatField()))['total']
-
-            return render(self.request, 'checkouts.html',{'order':order, 'total':total, 'pembeli_form': pembeli_form, 'kurir_form': kurir_form})
+            total = Cart.objects.filter(user=self.request.user, ordered=False).aggregate(
+                total=Sum(F('quantity') * F('harga'), output_field=FloatField()))['total']
+            return render(self.request, 'checkouts.html',
+                          {'order': order, 'total': total, 'pembeli_form': pembeli_form, 'kurir_form': kurir_form})
         except ObjectDoesNotExist:
             messages.warning(self.request, "You do not have an active order")
             return redirect("/")
 
-
-
+def ke_bayar(request, id):
+    if request.method == 'POST':
+        p_form = PembeliForm(request.POST)
+        k_form = KurirForm(request.POST)
+        if p_form.is_valid() and k_form.is_valid():
+            #     p_form.save()
+            #     k_form.save()
+            print("hello")
+            messages.success(request, f'Silahkan lanjutkan ke pembayaran!')
+            return redirect('/')
+    # load data dari cart ke ORDER DISINI DAN SAVE
 
 @login_required
 def history(request):

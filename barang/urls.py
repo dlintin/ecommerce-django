@@ -22,6 +22,8 @@ urlpatterns = [
 
     path('checkouts/', Cekot.as_view(), name='checkouts-home'),
 
+    path('ke_bayar/<int:id>/', views.ke_bayar, name='ke_bayar'),
+
     ]
 
 

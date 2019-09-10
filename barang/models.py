@@ -48,7 +48,7 @@ class Cart(models.Model):
     harga = models.DecimalField(max_digits=1000000, decimal_places=2, null=True)
 
     def __str__(self):
-        return f"{self.quantity} of {self.item.harga}"
+        return f"{self.item}, by: {self.user} | {self.quantity} item = {self.item.harga}"
 
     def get_total_item_price(self):
         return self.quantity * self.item.harga

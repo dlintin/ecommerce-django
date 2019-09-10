@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Image
+from .models import *
 from django.contrib.contenttypes.admin import GenericTabularInline
 
 # Register your models here.
@@ -12,3 +12,4 @@ class ProductAdmin(admin.ModelAdmin):
     ]
 
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Orderiaaa)
