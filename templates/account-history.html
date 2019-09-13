@@ -25,22 +25,28 @@
                             <table class="table table-bordered table-striped table-order-history">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Nomor Pesanan</th>
+                                        <th scope="col">Penerima</th>
+                                        <th scope="col">Item</th>
                                         <th scope="col">Tgl Pemesansn</th>
-                                        <th scope="col">Status</th>
+                                        <th scope="col">Status Pengiriman</th>
                                         <th scope="col">Harga Total</th>
                                        
                                     </tr>
                                 </thead>
                                 <tbody>
+                                {% for o in order %}
                                     <tr>
-                                        <td>1</td>
-                                        <td><b>175525</b> <a href="cart.html" class="ml-1">View Details</a></td>
-                                        <td>01.02.2017</td>
-                                        <td>Shipped</td>
-                                        <td><span class="color">$1252.00</span></td>
+                                        <td>{{ o.nama_penerima }}</td>
+                                        <td>{{ o.items.all }}</td>
+                                        <td>{{ o.tanggal_pesan }}</td>
+                                        {% if o.telah_dikirim == 'False' %}
+                                        <td>Sedang diproses</td>
+                                        {% else %}
+                                        <td>Dikirim</td>
+                                        {% endif %}
+                                        <td><span class="color">IDR {{ o.total_pembayaran }}</span></td>
                                     </tr>
+                                {% endfor %}
                                 </tbody>
                             </table>
                         </div>

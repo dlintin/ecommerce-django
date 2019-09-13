@@ -4,13 +4,6 @@ from django.conf import settings
 from django.db import models
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
-from django.http import request
-
-from pembeli.models import Profile
-from django.db.models import Sum
-from django.shortcuts import reverse
-from django.utils import timezone
-
 
 
 # Create your models here.
@@ -45,6 +38,7 @@ class Cart(models.Model):
     ordered = models.BooleanField(default=False)
     item = models.ForeignKey(Produk, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
+    pesan = models.TextField(null=True)
     harga = models.DecimalField(max_digits=1000000, decimal_places=2, null=True)
 
     def __str__(self):
@@ -63,7 +57,6 @@ class Cart(models.Model):
             subtotal = sum(self.quantity * self.item.harga)
             total += subtotal
         return total
-
 
 
 class Kurir(models.Model):
@@ -90,11 +83,18 @@ class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     nama_penerima = models.CharField(max_length=30, null=True)
     items = models.ManyToManyField(Cart)
-    tanggal_pesan = models.DateTimeField(default=datetime.now, blank=True)
+    total_pembayaran = models.DecimalField(max_digits=1000, decimal_places=2, null=True)
+    tanggal_pesan = models.DateTimeField(blank=True)
     ordered = models.BooleanField(default=False)
     alamat_pengiriman = models.TextField(null=True)
     tlp_penerima = models.CharField(max_length=20, null=True)
-    pembayaran = models.CharField(choices=metode_pembayaran, max_length=20)
-    kurir_pengiriman = models.ForeignKey(Kurir, on_delete=models.CASCADE)
-    being_delivered = models.BooleanField(default=False)
-    received = models.BooleanField(default=False)
+    pembayaran = models.CharField(choices=metode_pembayaran, max_length=20, null=True)
+    bukti_pembayaran = models.ImageField(upload_to="images", null=True)
+    status_pembayaran = models.BooleanField(default=False)
+    kurir_pengiriman = models.ForeignKey(Kurir, on_delete=models.CASCADE, null=True)
+    telah_dikirim = models.BooleanField(default=False)
+    telah_diterima = models.BooleanField(default=False)
+
+    
+    def __str__(self):
+        return f"Pembayaran: {self.status_pembayaran}, by: {self.nama_penerima}"

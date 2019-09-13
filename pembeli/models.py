@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 
 from django.db.models.signals import post_save
 
-from django.dispatch import receiver
 
 # Create your models here.
 class Profile(models.Model):
@@ -21,10 +20,3 @@ def create_profile(sender, **kwargs):
     
 post_save.connect(create_profile, sender=User)
 
-# class AlamatPembeli(models.Model):
-#     idpembeli = models.CharField(max_length=50)
-#     alamat = models.IntegerField()
-#     def __str__(self):
-#         return self.alamat
-#     class Meta:
-#         verbose_name_plural = "Alamat"

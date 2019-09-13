@@ -20,9 +20,11 @@ urlpatterns = [
 
     path('cart/', OrderSummaryView.as_view(), name='cart'),
 
-    path('checkouts/', Cekot.as_view(), name='checkouts-home'),
+    path('checkouts/', checkout.as_view(), name='checkouts-home'),
 
     path('ke_bayar/<int:id>/', views.ke_bayar, name='ke_bayar'),
+
+    path('bayar_upload/', views.bayar_upload, name='bayar_upload'),
 
     ]
 

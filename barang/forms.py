@@ -15,14 +15,7 @@ class KurirForm(forms.ModelForm):
         model = Order
         fields = ['kurir_pengiriman', 'pembayaran']
 
-
-
-
-    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-
-    # items = models.ManyToManyField(Cart)
-    # tanggal_pesan = models.DateTimeField(default=datetime.now, blank=True)
-    # ordered = models.BooleanField(default=False)
-
-    # being_delivered = models.BooleanField(default=False)
-    # received = models.BooleanField(default=False)
+class PembayaranForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ['bukti_pembayaran']

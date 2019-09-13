@@ -15,5 +15,7 @@ class ProductAdmin(admin.ModelAdmin):
     
 admin.site.register(Produk, ProductAdmin)
 admin.site.register(KategoriBarang)
-admin.site.register(Cart)
+# admin.site.register(Cart)
+
 admin.site.register(Kurir)
+admin.site.register(Order)

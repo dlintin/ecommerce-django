@@ -25,3 +25,12 @@ class Orderiaaa(models.Model):
 
     def __str__(self):
         return f"{self.item_pesan.all()}, by: {self.nama_penerima}"
+
+
+class Alat(models.Model):
+    nana_produk = models.CharField(max_length=100)
+    jumlah = models.CharField(max_length=100)
+    harga = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+
+    def __str__(self):
+        return self.nana_produk

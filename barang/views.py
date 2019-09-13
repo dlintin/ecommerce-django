@@ -1,19 +1,16 @@
-import self as self
+
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic.base import View
+from django.utils import timezone
 from .forms import *
-from django.http import HttpResponse
 from django.views import View
 from .models import *
 from pembeli.models import *
-from django.views.generic import ListView, DetailView
-from django.views.generic import TemplateView
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 # Create your views here.
+
 from django.db.models import Sum, F, FloatField
 
 
@@ -37,14 +34,16 @@ def barangs(request, pk):
     return render(request, 'product.html', {'barang': barang, 'warna': warna})
 
 
-class Cekot(LoginRequiredMixin, View):
+class checkout(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         user = Profile.objects.values_list('nama_lengkap', flat=True).get(user_id=self.request.user.id)
         alamat = Profile.objects.values_list('alamat', flat=True).get(user_id=self.request.user.id)
         tlp = Profile.objects.values_list('tlp', flat=True).get(user_id=self.request.user.id)
 
+        #membarikan nilai awal ke form
         pembeli_form = PembeliForm(initial={'nama_penerima': user, 'alamat_pengiriman': alamat, 'tlp_penerima': tlp})
         kurir_form = KurirForm()
+
         try:
             order = Cart.objects.filter(user=self.request.user, ordered=False)
             total = Cart.objects.filter(user=self.request.user, ordered=False).aggregate(
@@ -55,21 +54,64 @@ class Cekot(LoginRequiredMixin, View):
             messages.warning(self.request, "You do not have an active order")
             return redirect("/")
 
-def ke_bayar(request, id):
+def ke_bayar(request,id):
+    pembayaran_form = PembayaranForm(request.POST, request.FILES)
     if request.method == 'POST':
         p_form = PembeliForm(request.POST)
         k_form = KurirForm(request.POST)
         if p_form.is_valid() and k_form.is_valid():
-            #     p_form.save()
-            #     k_form.save()
-            print("hello")
-            messages.success(request, f'Silahkan lanjutkan ke pembayaran!')
-            return redirect('/')
+
+            isix = Order.objects.filter(user_id=request.user, ordered=False)
+            isi = isix[0]
+            if isix.exists():
+                isi.nama_penerima = p_form.cleaned_data['nama_penerima']
+                isi.alamat_pengiriman = p_form.cleaned_data['alamat_pengiriman']
+                isi.tlp_penerima = p_form.cleaned_data['tlp_penerima']
+                isi.kurir_pengiriman = k_form.cleaned_data['kurir_pengiriman']
+                isi.pembayaran = k_form.cleaned_data['pembayaran']
+                isi.save()
+
+                try:
+                    total = Cart.objects.filter(user=request.user, ordered=False).aggregate(
+                        total=Sum(F('quantity') * F('harga'), output_field=FloatField()))['total']
+                except ObjectDoesNotExist:
+                    messages.warning(request, "gagal mengambil total pembayaran")
+
+
+                Cart.objects.filter(user_id = request.user, ordered = False).update(ordered = True)
+
+                bayar = Order.objects.get(user_id=request.user, ordered=False)
+                if bayar.pembayaran == 'cod':
+                    Order.objects.filter(user_id=request.user, ordered=False).update(ordered=True, total_pembayaran=total)
+                    messages.success(request, f'Pesanan selesai dan akan segera Diproses!')
+                    return redirect("/")
+                else:
+                    Order.objects.filter(user_id=request.user, ordered=False).update(ordered=True, total_pembayaran=total)
+                    return render(request, 'pembayaran.html',{'total': total, 'pembayaran_form':pembayaran_form,})
+            else:
+
+                # TODO:
+                # user_ordered = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+                # ordered_ordered = models.BooleanField(default=False)
+                # item_ordered = models.ForeignKey(Produk, on_delete=models.CASCADE)
+                # quantity_ordered = models.IntegerField(default=1)
+                # pesan_ordered = models.TextField(null=True)
+                # harga_ordered = models.DecimalField(max_digits=1000000, decimal_places=2, null=True)
+
+                # item_ordered = Order.objects.get_or_create(user_id = request.user)
+                # item_ordered.save()
+
+                return redirect("/")
+
+            # print("hello")
+            # messages.success(request, f'Silahkan lanjutkan ke pembayaran! {subject} ')
+            # return redirect('/')
     # load data dari cart ke ORDER DISINI DAN SAVE
 
 @login_required
 def history(request):
-    return render (request, 'account-history.html',{})
+    order = Order.objects.filter(ordered = True, user_id = request.user)
+    return render (request, 'account-history.html',{'order':order})
 
 def detail(request):
     return render (request, 'produk-detail.html',{})
@@ -93,25 +135,47 @@ class OrderSummaryView(LoginRequiredMixin, View):
             return redirect("/")
 
 
+
 @login_required
 def add_to_cart(request, pk):
     item = Produk.objects.get(id=pk)
-    isi = Cart.objects.filter(user_id=request.user,item_id=pk)
-    if isi.exists():
-        cart_item = Cart.objects.get(user_id=request.user,
-            item_id=pk
-        )
-        cart_item.quantity +=1
-        cart_item.save()
-        return redirect("/")
+    order_item, created = Cart.objects.get_or_create(
+        item=item,
+        user=request.user,
+        ordered=False,
+        harga=item.harga,
+    )
+    order_qs = Order.objects.filter(user_id=request.user, ordered=False)
+    if order_qs.exists():
+        order = order_qs[0]
+        # check if the order item is in the order
+        if order.items.filter(item__id=item.id).exists():
+            order_item.quantity += 1
+            order_item.save()
+            messages.info(request, "This item quantity was updated.")
+            return redirect("/")
+        else:
+            order.items.add(order_item)
+            messages.info(request, "This item was added to your cart.")
+            return redirect("/")
     else:
-        item = Produk.objects.get(id=pk)
-        cart_itemx, created = Cart.objects.get_or_create(
-            item=item,
-            user=request.user,
-            harga=item.harga,
-            ordered=False
-        )
-        cart_itemx.save()
-        return redirect("/")
+        ordered_date = timezone.now()
+        orderx = Order.objects.create(user=request.user, tanggal_pesan=ordered_date)
+        orderx.items.add(order_item)
+        messages.info(request, "This item was added to your cart.")
+    return redirect("/")
+
+
+def bayar_upload(request):
+    if request.method == 'POST':
+        pembayaran_form = PembayaranForm(request.POST, request.FILES)
+        if pembayaran_form.is_valid():
+            # instance = Order(file_field=request.FILES['file'])
+            x = Order.objects.get(user_id=request.user, ordered=True, pembayaran='transfer', bukti_pembayaran='')
+            x.bukti_pembayaran = pembayaran_form.cleaned_data['bukti_pembayaran']
+            x.save()
+            messages.success(request, f'Pesanan selesai dan akan segera Diproses!')
+            return redirect("/")
+        else:
+            return redirect("/")
 

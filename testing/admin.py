@@ -11,5 +11,6 @@ class ProductAdmin(admin.ModelAdmin):
         ImageInline,
     ]
 
-admin.site.register(Product, ProductAdmin)
-admin.site.register(Orderiaaa)
+# admin.site.register(Product, ProductAdmin)
+# admin.site.register(Orderiaaa)
+# admin.site.register(Alat)
