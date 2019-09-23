@@ -72,7 +72,7 @@
                             </div>
                             <div class="prd-block_actions topline">
                                 <div class="prd-block_price"><span class="prd-block_price--actual">Rp.{{ barang.harga }}</span> </div>
-                                <div class="btn-wrap"><button class="btn btn--add-to-cart" data-fancybox data-src="#modalCheckOut"><i class="icon icon-handbag"></i><span>Beli</span></button></div>
+                                <div class="btn-wrap"><a class="btn" href="{% url 'add-cart' barang.id %}" ><i class="icon icon-handbag"></i><span>Beli</span></a></div>
                                 
                             </div>
                             <div class="prd-safecheckout topline">
