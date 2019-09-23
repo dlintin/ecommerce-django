@@ -18,7 +18,6 @@ def home(request, **kwargs):
     barang = Produk.objects.all()
     warna = Warna.objects.all()
     # carts = Cart.objects.all()
-
     if request.user.is_authenticated:
         qty = Cart.objects.filter(user=request.user, ordered=False).count()
         carts = Cart.objects.filter(user=request.user, ordered=False)
@@ -77,9 +76,7 @@ def ke_bayar(request,id):
                 except ObjectDoesNotExist:
                     messages.warning(request, "gagal mengambil total pembayaran")
 
-
                 Cart.objects.filter(user_id = request.user, ordered = False).update(ordered = True)
-
                 bayar = Order.objects.get(user_id=request.user, ordered=False)
                 if bayar.pembayaran == 'cod':
                     Order.objects.filter(user_id=request.user, ordered=False).update(ordered=True, total_pembayaran=total)
@@ -90,23 +87,8 @@ def ke_bayar(request,id):
                     return render(request, 'pembayaran.html',{'total': total, 'pembayaran_form':pembayaran_form,})
             else:
 
-                # TODO:
-                # user_ordered = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-                # ordered_ordered = models.BooleanField(default=False)
-                # item_ordered = models.ForeignKey(Produk, on_delete=models.CASCADE)
-                # quantity_ordered = models.IntegerField(default=1)
-                # pesan_ordered = models.TextField(null=True)
-                # harga_ordered = models.DecimalField(max_digits=1000000, decimal_places=2, null=True)
-
-                # item_ordered = Order.objects.get_or_create(user_id = request.user)
-                # item_ordered.save()
-
                 return redirect("/")
 
-            # print("hello")
-            # messages.success(request, f'Silahkan lanjutkan ke pembayaran! {subject} ')
-            # return redirect('/')
-    # load data dari cart ke ORDER DISINI DAN SAVE
 
 @login_required
 def history(request):
