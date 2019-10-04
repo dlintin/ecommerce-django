@@ -40,16 +40,6 @@
                                 </div>
                             </div>
                             <div class="mt-2"></div>
-<!--                            <div class="card card&#45;&#45;grey">-->
-<!--                                <div class="card-body">-->
-<!--                                    <h2>METODE PEMBAYARAN</h2>-->
-<!--                                    <div class="clearfix"><input id="formcheckoutRadio4" value="" name="radio2" type="radio" class="radio" checked="checked"> <label for="formcheckoutRadio4">COD / BAYAR DITEMPAT</label></div>-->
-<!--                                    <div class="clearfix"><input id="formcheckoutRadio4" value="" name="radio2" type="radio" class="radio" checked="checked"> <label for="formcheckoutRadio4">TRANSFER BANK</label></div>-->
-<!--                                   -->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="mt-2"></div>-->
-                            
                         </div>
                         <div class="col-md-4 mt-2 mt-md-0">
                             <h2 class="custom-color">PESANAN</h2>
@@ -60,13 +50,15 @@
                                     <div class="cart-table-prd-qty"><b>JUMLAH</b></div>
                                     <div class="cart-table-prd-price"><b>HARGA</b></div>
                                 </div>
-
                                 {% for order_item in order %}
                                 <div class="cart-table-prd">
 
 <!--                                    <div class="cart-table-prd-image"><a href="#"><img src="images/products/xsmall/product-05.jpg" alt=""></a></div>-->
                                     <div class="cart-table-prd-name">
                                         <h2><a href="#">{{ order_item.item.namaproduk }}</a></h2>
+                                        {% if order_item.pesan %}
+                                    <h5><a href="#">Catatan: {{ order_item.pesan }}</a></h5>
+                                    {% endif %}
                                     </div>
                                     <div class="cart-table-prd-qty"><b>{{ order_item.quantity }}</b></div>
                                     <div class="cart-table-prd-price"><b>IDR {{ order_item.get_total_item_price }}</b></div>

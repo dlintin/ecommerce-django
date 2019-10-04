@@ -1,4 +1,3 @@
-
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
@@ -9,8 +8,6 @@ from django.views import View
 from .models import *
 from pembeli.models import *
 from django.contrib.auth.decorators import login_required
-# Create your views here.
-
 from django.db.models import Sum, F, FloatField
 
 
@@ -21,8 +18,8 @@ def home(request, **kwargs):
     if request.user.is_authenticated:
         qty = Cart.objects.filter(user=request.user, ordered=False).count()
         carts = Cart.objects.filter(user=request.user, ordered=False)
-    # jumlah = Cart.get_total_item_price(self)
-        return render (request, 'home.html', {'barang': barang, 'warna': warna, 'carts':carts, 'qty':qty,})
+        # jumlah = Cart.get_total_item_price(self)
+        return render(request, 'home.html', {'barang': barang, 'warna': warna, 'carts': carts, 'qty': qty, })
     else:
         return render(request, 'home.html', {'barang': barang, 'warna': warna, })
 
@@ -30,7 +27,9 @@ def home(request, **kwargs):
 def barangs(request, pk):
     barang = Produk.objects.get(id=pk)
     warna = Warna.objects.filter(object_id=pk)
-    return render(request, 'product.html', {'barang': barang, 'warna': warna})
+    pesan = PesanForm()
+    jumlah = JumlahForm()
+    return render(request, 'product.html', {'barang': barang, 'warna': warna, 'jumlah':jumlah, 'pesan':pesan})
 
 
 class checkout(LoginRequiredMixin, View):
@@ -39,7 +38,7 @@ class checkout(LoginRequiredMixin, View):
         alamat = Profile.objects.values_list('alamat', flat=True).get(user_id=self.request.user.id)
         tlp = Profile.objects.values_list('tlp', flat=True).get(user_id=self.request.user.id)
 
-        #membarikan nilai awal ke form
+        # membarikan nilai awal ke form
         pembeli_form = PembeliForm(initial={'nama_penerima': user, 'alamat_pengiriman': alamat, 'tlp_penerima': tlp})
         kurir_form = KurirForm()
 
@@ -53,7 +52,8 @@ class checkout(LoginRequiredMixin, View):
             messages.warning(self.request, "You do not have an active order")
             return redirect("/")
 
-def ke_bayar(request,id):
+
+def ke_bayar(request, id):
     pembayaran_form = PembayaranForm(request.POST, request.FILES)
     if request.method == 'POST':
         p_form = PembeliForm(request.POST)
@@ -76,7 +76,7 @@ def ke_bayar(request,id):
                 except ObjectDoesNotExist:
                     messages.warning(request, "gagal mengambil total pembayaran")
 
-                Cart.objects.filter(user_id = request.user, ordered = False).update(ordered = True)
+                Cart.objects.filter(user_id=request.user, ordered=False).update(ordered=True)
                 bayar = Order.objects.get(user_id=request.user, ordered=False)
                 if bayar.pembayaran == 'cod':
                     Order.objects.filter(user_id=request.user, ordered=False).update(ordered=True, total_pembayaran=total)
@@ -84,7 +84,7 @@ def ke_bayar(request,id):
                     return redirect("/")
                 else:
                     Order.objects.filter(user_id=request.user, ordered=False).update(ordered=True, total_pembayaran=total)
-                    return render(request, 'pembayaran.html',{'total': total, 'pembayaran_form':pembayaran_form,})
+                    return render(request, 'pembayaran.html', {'total': total, 'pembayaran_form': pembayaran_form, })
             else:
 
                 return redirect("/")
@@ -92,41 +92,67 @@ def ke_bayar(request,id):
 
 @login_required
 def history(request):
-    order = Order.objects.filter(ordered = True, user_id = request.user)
-    return render (request, 'account-history.html',{'order':order})
+    order = Order.objects.filter(ordered=True, user_id=request.user)
+    return render(request, 'account-history.html', {'order': order})
+
 
 def detail(request):
-    return render (request, 'produk-detail.html',{})
+    return render(request, 'produk-detail.html', {})
+
 
 @login_required
 def keranjang(request):
-    return render (request, 'keranjang.html',{})
+    return render(request, 'keranjang.html', {})
 
 
 class OrderSummaryView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
-
+        jml = Cart.objects.filter(user=self.request.user, ordered=False,)
+        pesan = PesanForm()
+        jumlah = JumlahForm(initial={'quantity': jml})
         try:
             order = Cart.objects.filter(user=self.request.user, ordered=False)
             total = Cart.objects.filter(user=self.request.user, ordered=False).aggregate(
                 total=Sum(F('quantity') * F('harga'), output_field=FloatField()))['total']
 
-            return render(self.request, 'keranjang.html', {'order':order, 'total':total})
+            return render(self.request, 'keranjang.html', {'order': order, 'total': total, 'pesan': pesan, 'jumlah':jumlah})
         except ObjectDoesNotExist:
             messages.warning(self.request, "You do not have an active order")
             return redirect("/")
 
+@login_required
+def delete(request, pk):
+    order = Cart.objects.filter(user_id=request.user, ordered=False, id=pk)
+    if order.exists():
+        order.delete()
+        return redirect("cart")
+    return redirect("cart")
 
 
 @login_required
 def add_to_cart(request, pk):
-    item = Produk.objects.get(id=pk)
-    order_item, created = Cart.objects.get_or_create(
-        item=item,
-        user=request.user,
-        ordered=False,
-        harga=item.harga,
-    )
+    if request.method == 'POST':
+        jumlah_form = JumlahForm(request.POST)
+        pesan_form = PesanForm(request.POST)
+        if jumlah_form.is_valid() and pesan_form.is_valid():
+            item = Produk.objects.get(id=pk)
+            order_item, created = Cart.objects.get_or_create(
+                item=item,
+                user=request.user,
+                ordered=False,
+                quantity=jumlah_form.cleaned_data['quantity'],
+                pesan=pesan_form.cleaned_data['pesan'],
+                harga=item.harga,
+            )
+        else:
+            item = Produk.objects.get(id=pk)
+            order_item, created = Cart.objects.get_or_create(
+                item=item,
+                user=request.user,
+                ordered=False,
+                harga=item.harga,
+            )
+
     order_qs = Order.objects.filter(user_id=request.user, ordered=False)
     if order_qs.exists():
         order = order_qs[0]
@@ -160,4 +186,3 @@ def bayar_upload(request):
             return redirect("/")
         else:
             return redirect("/")
-

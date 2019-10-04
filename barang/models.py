@@ -16,7 +16,7 @@ class KategoriBarang(models.Model):
 
 class Produk(models.Model):
     namaproduk = models.CharField(max_length=50)
-    harga = models.DecimalField(max_digits=1000000, decimal_places=2)
+    harga = models.DecimalField(max_digits=1000000, decimal_places=0)
     stok = models.IntegerField()
     gambar_barang = models.ImageField(upload_to="images", null=True)
     keterangan = models.TextField() 
@@ -39,7 +39,7 @@ class Cart(models.Model):
     item = models.ForeignKey(Produk, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     pesan = models.TextField(null=True)
-    harga = models.DecimalField(max_digits=1000000, decimal_places=2, null=True)
+    harga = models.DecimalField(max_digits=1000000, decimal_places=0, null=True)
 
     def __str__(self):
         return f"{self.item}, by: {self.user} | {self.quantity} item = {self.item.harga}"
@@ -61,7 +61,7 @@ class Cart(models.Model):
 
 class Kurir(models.Model):
     nama_kurir = models.CharField(max_length=50)
-    tarif = models.DecimalField(max_digits=1000000, decimal_places=2)
+    tarif = models.DecimalField(max_digits=1000000, decimal_places=0)
 
     def __str__(self):
         return self.nama_kurir
@@ -83,7 +83,7 @@ class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     nama_penerima = models.CharField(max_length=30, null=True)
     items = models.ManyToManyField(Cart)
-    total_pembayaran = models.DecimalField(max_digits=1000, decimal_places=2, null=True)
+    total_pembayaran = models.DecimalField(max_digits=1000, decimal_places=0, null=True)
     tanggal_pesan = models.DateTimeField(blank=True)
     ordered = models.BooleanField(default=False)
     alamat_pengiriman = models.TextField(null=True)

@@ -1,6 +1,6 @@
 
 {% extends 'base.html' %}
-
+{% load humanize %}
 {% load staticfiles %}
 {% block content %}
 
@@ -28,7 +28,7 @@
                                         <th scope="col">Penerima</th>
                                         <th scope="col">Item</th>
                                         <th scope="col">Tgl Pemesansn</th>
-                                        <th scope="col">Status Pengiriman</th>
+                                        <th scope="col" style="width:37px;">Status Pengiriman</th>
                                         <th scope="col">Harga Total</th>
                                        
                                     </tr>
@@ -37,14 +37,19 @@
                                 {% for o in order %}
                                     <tr>
                                         <td>{{ o.nama_penerima }}</td>
-                                        <td>{{ o.items.all }}</td>
+                                        <td>
+                                            {% for x in o.items.all %}
+                                                {{ x }}
+                                                <br><br>
+                                            {% endfor %}
+                                        </td>
                                         <td>{{ o.tanggal_pesan }}</td>
                                         {% if o.telah_dikirim == 'False' %}
                                         <td>Sedang diproses</td>
                                         {% else %}
                                         <td>Dikirim</td>
                                         {% endif %}
-                                        <td><span class="color">IDR {{ o.total_pembayaran }}</span></td>
+                                        <td><span class="color">IDR {{ o.total_pembayaran|intcomma }}</span></td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

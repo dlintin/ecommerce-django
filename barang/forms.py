@@ -19,3 +19,13 @@ class PembayaranForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = ['bukti_pembayaran']
+
+class PesanForm(forms.ModelForm):
+    class Meta:
+        model = Cart
+        fields = ['pesan']
+
+class JumlahForm(forms.ModelForm):
+    class Meta:
+        model = Cart
+        fields = ['quantity']

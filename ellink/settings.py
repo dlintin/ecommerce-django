@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'pembeli',
     'testing',
     'crispy_forms',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [

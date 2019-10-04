@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
+{% load crispy_forms_tags %}
 {% load staticfiles %}
 {% block content %}
 
@@ -70,11 +72,21 @@
                                 </div>
                             
                             </div>
-                            <div class="prd-block_actions topline">
-                                <div class="prd-block_price"><span class="prd-block_price--actual">Rp.{{ barang.harga }}</span> </div>
-                                <div class="btn-wrap"><a class="btn" href="{% url 'add-cart' barang.id %}" ><i class="icon icon-handbag"></i><span>Beli</span></a></div>
-                                
+                            <div class="prd-block_price"><span class="prd-block_price--actual">Rp.{{ barang.harga|intcomma }}</span> </div>
+                            <form action="{% url 'add-cart' barang.id %}" method="POST" enctype="multipart">
+                                {% csrf_token %}
+                            <div>
+                                {{ jumlah|crispy }}<br>
+                                 {{ pesan|crispy }}
                             </div>
+
+<!--                            <div class="prd-block_actions topline">-->
+<!--                                <div class="prd-block_price"><span class="prd-block_price&#45;&#45;actual">Rp.{{ barang.harga|intcomma }}</span> </div>-->
+<!--&lt;!&ndash;                                <form action="#" ><input type="hidden"> <a class="btn" href="{% url 'add-cart' barang.id %}" ><i class="icon icon-handbag"></i><span>Masukkan Keranjang</span></a></form>&ndash;&gt;-->
+<!--                            </div>-->
+
+                                 <div class="clearfix"><button type="submit" class="btn btn--lg w-100">Masukkan Keranjang</button></div>
+                            </form>
                             <div class="prd-safecheckout topline">
                               
                             </div>

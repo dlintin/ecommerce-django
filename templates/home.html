@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
 {% load staticfiles %}
 {% block content %}
     <div class="page-content">
@@ -231,7 +232,7 @@
                                             <h2 class="prd-title"><a href="{% url 'barang-detail' %}">{{ barangs.namaproduk}}</a></h2>
                                             <div class="prd-rating prd-hidemobile"><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star"></i></div>
                                             <div class="prd-price">
-                                                <div class="price-new">IDR {{ barangs.harga }}</div>
+                                                <div class="price-new">IDR {{ barangs.harga|intcomma }}</div>
                                             </div>
                                             <div class="prd-hover">
                                                 <div class="prd-action">
