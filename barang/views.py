@@ -79,6 +79,7 @@ def ke_bayar(request, id):
                 Cart.objects.filter(user_id=request.user, ordered=False).update(ordered=True)
                 bayar = Order.objects.get(user_id=request.user, ordered=False)
                 if bayar.pembayaran == 'cod':
+
                     Order.objects.filter(user_id=request.user, ordered=False).update(ordered=True, total_pembayaran=total)
                     messages.success(request, f'Pesanan selesai dan akan segera Diproses!')
                     return redirect("/")
@@ -135,7 +136,13 @@ def add_to_cart(request, pk):
         jumlah_form = JumlahForm(request.POST)
         pesan_form = PesanForm(request.POST)
         if jumlah_form.is_valid() and pesan_form.is_valid():
+            quantity = jumlah_form.cleaned_data['quantity']
             item = Produk.objects.get(id=pk)
+
+            # mengurangi jumlah stock
+            item.stok -= quantity
+            item.save()
+
             order_item, created = Cart.objects.get_or_create(
                 item=item,
                 user=request.user,
@@ -146,6 +153,11 @@ def add_to_cart(request, pk):
             )
         else:
             item = Produk.objects.get(id=pk)
+
+            # mengurangi jumlah stock
+            item.stok -= 1
+            item.save()
+
             order_item, created = Cart.objects.get_or_create(
                 item=item,
                 user=request.user,
@@ -160,6 +172,11 @@ def add_to_cart(request, pk):
         if order.items.filter(item__id=item.id).exists():
             order_item.quantity += 1
             order_item.save()
+            # mengurangi jumlah stock
+            item = Produk.objects.get(id=pk)
+            item.stok -= 1
+            item.save()
+
             messages.info(request, "This item quantity was updated.")
             return redirect("/")
         else:
